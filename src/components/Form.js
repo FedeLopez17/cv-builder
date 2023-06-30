@@ -16,7 +16,7 @@ export default class Form extends React.Component {
     } = this.props;
 
     return (
-      <section className="Form">
+      <section className="Form" id="forms-container">
         <PersonalInfoForm
           personalInfo={personalInfo}
           handleChange={handleChange}

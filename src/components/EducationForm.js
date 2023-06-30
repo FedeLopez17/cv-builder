@@ -9,50 +9,50 @@ export default class EducationForm extends React.Component {
 
     const educationArr = education.map((ed) => (
       <section className="education" key={ed.id}>
-        <label>
-          Institution:
-          <input
-            type="text"
-            placeholder="Harvard"
-            data-id={ed.id}
-            form="education"
-            name="institutionName"
-            value={ed.institutionName}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Degree:
-          <input
-            type="text"
-            placeholder="Bachelor's in Computer Science"
-            data-id={ed.id}
-            form="education"
-            name="degree"
-            value={ed.degree}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          From:
-          <YearPicker
-            id={ed.id}
-            form="education"
-            name="fromDate"
-            value={ed.fromDate}
-            handleChange={handleChange}
-          />
-        </label>
-        <label>
-          To:
-          <YearPicker
-            id={ed.id}
-            form="education"
-            name="toDate"
-            value={ed.toDate}
-            handleChange={handleChange}
-          />
-        </label>
+        <label for={`ed-institution-${ed.id}`}>Institution:</label>
+        <input
+          type="text"
+          placeholder="Harvard"
+          data-id={ed.id}
+          form="education"
+          id={`ed-institution-${ed.id}`}
+          name="institutionName"
+          value={ed.institutionName}
+          onChange={handleChange}
+        />
+
+        <label for={`ed-degree-${ed.id}`}>Degree:</label>
+        <input
+          type="text"
+          placeholder="Bachelor's in Computer Science"
+          data-id={ed.id}
+          form="education"
+          id={`ed-degree-${ed.id}`}
+          name="degree"
+          value={ed.degree}
+          onChange={handleChange}
+        />
+
+        <label for={`ed-from-${ed.id}`}>From:</label>
+        <YearPicker
+          dataId={ed.id}
+          form="education"
+          id={`ed-from-${ed.id}`}
+          name="fromDate"
+          value={ed.fromDate}
+          handleChange={handleChange}
+        />
+
+        <label for={`ed-to-${ed.id}`}>To:</label>
+        <YearPicker
+          dataId={ed.id}
+          form="education"
+          id={`ed-to-${ed.id}`}
+          name="toDate"
+          value={ed.toDate}
+          handleChange={handleChange}
+        />
+
         <button
           type="button"
           data-id={ed.id}

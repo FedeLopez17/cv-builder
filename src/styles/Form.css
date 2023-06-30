@@ -1,1 +1,43 @@
+#forms-container {
+  background-color: skyblue;
+}
 
+#forms-container > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience,
+.education {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.experience > *,
+.education > * {
+  grid-column: 1 / -1;
+}
+
+.experience > label[for*="from"],
+.education > label[for*="from"] {
+  grid-column: 1;
+  grid-row: 5;
+}
+
+.experience > select[id*="from"],
+.education > select[id*="from"] {
+  grid-column: 1;
+  grid-row: 6;
+}
+
+.experience > label[for*="to"],
+.education > label[for*="to"] {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.experience > select[id*="to"],
+.education > select[id*="to"] {
+  grid-column: 2;
+  grid-row: 6;
+}

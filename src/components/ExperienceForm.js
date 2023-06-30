@@ -9,50 +9,50 @@ export default class ExperienceForm extends React.Component {
 
     const experienceArr = experience.map((exp) => (
       <section className="experience" key={exp.id}>
-        <label>
-          Company:
-          <input
-            type="text"
-            placeholder="Google"
-            data-id={exp.id}
-            form="experience"
-            name="companyName"
-            value={exp.companyName}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Role:
-          <input
-            type="text"
-            placeholder="CEO"
-            data-id={exp.id}
-            form="experience"
-            name="role"
-            value={exp.role}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          From:
-          <YearPicker
-            id={exp.id}
-            form="experience"
-            name="fromDate"
-            value={exp.fromDate}
-            handleChange={handleChange}
-          />
-        </label>
-        <label>
-          To:
-          <YearPicker
-            id={exp.id}
-            form="experience"
-            name="toDate"
-            value={exp.toDate}
-            handleChange={handleChange}
-          />
-        </label>
+        <label htmlFor={`exp-company-${exp.id}`}>Company:</label>
+        <input
+          type="text"
+          placeholder="Google"
+          data-id={exp.id}
+          form="experience"
+          id={`exp-company-${exp.id}`}
+          name="companyName"
+          value={exp.companyName}
+          onChange={handleChange}
+        />
+
+        <label htmlFor={`exp-role-${exp.id}`}>Role:</label>
+        <input
+          type="text"
+          placeholder="CEO"
+          data-id={exp.id}
+          form="experience"
+          id={`exp-role-${exp.id}`}
+          name="role"
+          value={exp.role}
+          onChange={handleChange}
+        />
+
+        <label htmlFor={`exp-from-${exp.id}`}>From:</label>
+        <YearPicker
+          dataId={exp.id}
+          form="experience"
+          id={`exp-from-${exp.id}`}
+          name="fromDate"
+          value={exp.fromDate}
+          handleChange={handleChange}
+        />
+
+        <label htmlFor={`exp-to-${exp.id}`}>To:</label>
+        <YearPicker
+          dataId={exp.id}
+          form="experience"
+          id={`exp-to-${exp.id}`}
+          name="toDate"
+          value={exp.toDate}
+          handleChange={handleChange}
+        />
+
         <button
           type="button"
           data-id={exp.id}

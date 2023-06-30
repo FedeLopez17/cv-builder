@@ -2,7 +2,7 @@ import React from "react";
 
 export default class YearPicker extends React.Component {
   render() {
-    const { id, form, name, value, handleChange } = this.props;
+    const { id, dataId, form, name, value, handleChange } = this.props;
 
     const yearsOptions = [
       <option value="present" key="present">
@@ -19,7 +19,8 @@ export default class YearPicker extends React.Component {
 
     return (
       <select
-        data-id={id}
+        data-id={dataId}
+        id={id}
         form={form}
         name={name}
         value={value}
