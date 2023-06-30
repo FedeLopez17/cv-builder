@@ -1,0 +1,8 @@
+#mode-toggle {
+  display: flex;
+}
+
+#mode-toggle > .active {
+  background-color: royalblue;
+  color: white;
+}

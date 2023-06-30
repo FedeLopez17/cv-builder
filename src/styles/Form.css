@@ -7,6 +7,11 @@
   flex-direction: column;
 }
 
+#experience-form,
+#education-form {
+  gap: 20px;
+}
+
 .experience,
 .education {
   display: grid;

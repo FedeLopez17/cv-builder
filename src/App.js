@@ -1,12 +1,14 @@
 import React from "react";
 import "./styles/App.css";
 import Form from "./components/Form";
+import ModeToggle from "./components/ModeToggle";
 
 export default class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      isEditMode: true,
       personalInfo: {
         firstName: "",
         lastName: "",
@@ -20,9 +22,17 @@ export default class App extends React.Component {
       education: [],
     };
 
+    this.toggleMode = this.toggleMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addEntry = this.addEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+  }
+
+  toggleMode(event) {
+    const mode = event.target.getAttribute("data-mode");
+    this.setState({
+      isEditMode: mode === "edit",
+    });
   }
 
   handleChange(event) {
@@ -81,16 +91,24 @@ export default class App extends React.Component {
   }
 
   render() {
+    const form = (
+      <Form
+        personalInfo={this.state.personalInfo}
+        experience={this.state.experience}
+        education={this.state.education}
+        handleChange={this.handleChange}
+        addEntry={this.addEntry}
+        deleteEntry={this.deleteEntry}
+      />
+    );
+
     return (
       <div className="App">
-        <Form
-          personalInfo={this.state.personalInfo}
-          experience={this.state.experience}
-          education={this.state.education}
-          handleChange={this.handleChange}
-          addEntry={this.addEntry}
-          deleteEntry={this.deleteEntry}
+        <ModeToggle
+          handleClick={this.toggleMode}
+          isEditMode={this.state.isEditMode}
         />
+        {this.state.isEditMode ? form : ""}
       </div>
     );
   }
