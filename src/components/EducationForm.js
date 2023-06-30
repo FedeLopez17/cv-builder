@@ -5,8 +5,6 @@ export default class EducationForm extends React.Component {
   render() {
     const { education, handleChange, addEntry, deleteEntry } = this.props;
 
-    console.log(education);
-
     const educationArr = education.map((ed) => (
       <section className="education" key={ed.id}>
         <label for={`ed-institution-${ed.id}`}>Institution:</label>

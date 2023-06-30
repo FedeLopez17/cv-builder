@@ -5,8 +5,6 @@ export default class ExperienceForm extends React.Component {
   render() {
     const { experience, handleChange, addEntry, deleteEntry } = this.props;
 
-    console.log(experience);
-
     const experienceArr = experience.map((exp) => (
       <section className="experience" key={exp.id}>
         <label htmlFor={`exp-company-${exp.id}`}>Company:</label>

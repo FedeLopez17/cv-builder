@@ -30,8 +30,6 @@ export default class App extends React.Component {
     const form = event.target.getAttribute("form");
     const id = event.target.getAttribute("data-id");
 
-    console.log(`${name} ${value} ${form} ${id}`);
-
     let newState;
 
     if (Array.isArray(this.state[form])) {
