@@ -7,7 +7,7 @@ export default class EducationForm extends React.Component {
 
     const educationArr = education.map((ed) => (
       <section className="education" key={ed.id}>
-        <label for={`ed-institution-${ed.id}`}>Institution:</label>
+        <label htmlFor={`ed-institution-${ed.id}`}>Institution:</label>
         <input
           type="text"
           placeholder="Harvard"
@@ -19,7 +19,7 @@ export default class EducationForm extends React.Component {
           onChange={handleChange}
         />
 
-        <label for={`ed-degree-${ed.id}`}>Degree:</label>
+        <label htmlFor={`ed-degree-${ed.id}`}>Degree:</label>
         <input
           type="text"
           placeholder="Bachelor's in Computer Science"
@@ -31,7 +31,7 @@ export default class EducationForm extends React.Component {
           onChange={handleChange}
         />
 
-        <label for={`ed-from-${ed.id}`}>From:</label>
+        <label htmlFor={`ed-from-${ed.id}`}>From:</label>
         <YearPicker
           dataId={ed.id}
           form="education"
@@ -41,7 +41,7 @@ export default class EducationForm extends React.Component {
           handleChange={handleChange}
         />
 
-        <label for={`ed-to-${ed.id}`}>To:</label>
+        <label htmlFor={`ed-to-${ed.id}`}>To:</label>
         <YearPicker
           dataId={ed.id}
           form="education"
