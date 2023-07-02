@@ -5,8 +5,8 @@ export default class YearPicker extends React.Component {
     const { id, dataId, form, name, value, handleChange } = this.props;
 
     const yearsOptions = [
-      <option value="present" key="present">
-        present
+      <option value="Present" key="present">
+        Present
       </option>,
     ];
     for (let i = new Date().getFullYear(); i > 1900; i--) {
