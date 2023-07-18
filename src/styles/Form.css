@@ -1,5 +1,8 @@
 #forms-container {
+  flex: 1;
   background-color: skyblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #forms-container > * {
@@ -7,42 +10,62 @@
   flex-direction: column;
 }
 
-#experience-form,
-#education-form {
-  gap: 20px;
-}
-
-.experience,
-.education {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.experience > *,
-.education > * {
-  grid-column: 1 / -1;
-}
-
-.experience > label[for*="from"],
-.education > label[for*="from"] {
+label[for="first-name"],
+input#first-name,
+label[for="role"],
+input#role,
+label[for="email"],
+input#email {
   grid-column: 1;
+}
+
+label[for="last-name"],
+input#last-name,
+label[for="phone"],
+input#phone {
+  grid-column: 2;
+}
+
+label[for="description"],
+textarea#description,
+#online-presence-inputs,
+.tag-selector,
+.background-form {
+  grid-column: 1/-1;
+}
+
+label[for="first-name"],
+label[for="last-name"] {
+  grid-row: 1;
+}
+
+input#first-name,
+input#last-name {
+  grid-row: 2;
+}
+
+label[for="role"] {
+  grid-row: 3;
+}
+
+input#role {
+  grid-row: 4;
+}
+
+label[for="description"] {
   grid-row: 5;
 }
 
-.experience > select[id*="from"],
-.education > select[id*="from"] {
-  grid-column: 1;
+textarea#description {
   grid-row: 6;
 }
 
-.experience > label[for*="to"],
-.education > label[for*="to"] {
-  grid-column: 2;
-  grid-row: 5;
+label[for="email"],
+label[for="phone"] {
+  grid-row: 7;
 }
 
-.experience > select[id*="to"],
-.education > select[id*="to"] {
-  grid-column: 2;
-  grid-row: 6;
+input#email,
+input#phone {
+  grid-row: 8;
 }

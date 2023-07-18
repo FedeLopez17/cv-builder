@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/App.css";
 import Form from "./components/Form";
 import ModeToggle from "./components/ModeToggle";
+import Preview from "./components/Preview";
 
 export default class App extends React.Component {
   constructor() {
@@ -14,12 +15,29 @@ export default class App extends React.Component {
         lastName: "",
         role: "",
         description: "",
-        location: "",
+        location: {
+          country: "",
+          region: "",
+          city: "",
+          postalCode: "",
+          address: "",
+        },
         phone: "",
         email: "",
+        website: { domain: "", url: "", redirect: false },
+        linkedin: { userName: "", url: "", redirect: false },
+        github: { userName: "", url: "", redirect: false },
+        instagram: { userName: "", url: "", redirect: false },
+        twitter: { userName: "", url: "", redirect: false },
+        facebook: { userName: "", url: "", redirect: false },
+        languages: [],
+        softSkills: [],
+        technicalSkills: [],
+        hobbies: [],
+        references: [],
+        experience: [],
+        education: [],
       },
-      experience: [],
-      education: [],
     };
 
     this.toggleMode = this.toggleMode.bind(this);
@@ -36,79 +54,95 @@ export default class App extends React.Component {
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    const form = event.target.getAttribute("form");
+    const { name, type, value, checked } = event.target;
     const id = event.target.getAttribute("data-id");
+    const wrapper = event.target.getAttribute("data-wrapper");
+    const wrapperState = wrapper ? this.state.personalInfo[wrapper] : false;
+    const wrapperIsArr = Array.isArray(wrapperState);
 
-    let newState;
+    this.setState((prevState) => {
+      let updatedState;
 
-    if (Array.isArray(this.state[form])) {
-      newState = {
-        [form]: this.state[form].map((element) =>
-          element.id === parseInt(id) ? { ...element, [name]: value } : element
-        ),
-      };
-    } else {
-      newState = {
-        [form]: {
-          ...this.state[form],
-          [name]: value,
-        },
-      };
-    }
+      if (wrapper) {
+        updatedState = {
+          personalInfo: {
+            ...prevState.personalInfo,
+            [wrapper]: wrapperIsArr
+              ? wrapperState.map((ele) =>
+                  ele.id === parseInt(id) ? { ...ele, [name]: value } : ele
+                )
+              : {
+                  ...wrapperState,
+                  [name]: type === "checkbox" ? checked : value,
+                },
+          },
+        };
+      } else {
+        updatedState = {
+          personalInfo: {
+            ...prevState.personalInfo,
+            [name]: value,
+          },
+        };
+      }
 
-    this.setState(newState);
+      return updatedState;
+    });
   }
 
   addEntry(event) {
-    const form = event.target.getAttribute("form");
-    const isEdu = form === "education";
+    const wrapper = event.target.getAttribute("data-wrapper");
+    const entry = JSON.parse(event.target.getAttribute("data-entry"));
 
-    this.setState({
-      [form]: [
-        ...this.state[form],
-        {
-          [(isEdu && "institutionName") || "companyName"]: "",
-          [(isEdu && "degree") || "role"]: "",
-          id:
-            (this.state[form].length &&
-              this.state[form].slice(-1).pop().id + 1) ||
-            0,
-          fromDate: new Date().getFullYear() - 3,
-          toDate: new Date().getFullYear(),
+    this.setState((prevState) => {
+      const entries = prevState.personalInfo[wrapper];
+      const newEntry = {
+        ...entry,
+        id: entries.length ? entries[entries.length - 1].id + 1 : 0,
+      };
+
+      return {
+        personalInfo: {
+          ...prevState.personalInfo,
+          [wrapper]: [...prevState.personalInfo[wrapper], newEntry],
         },
-      ],
+      };
     });
   }
 
   deleteEntry(event) {
-    const form = event.target.getAttribute("form");
-    const id = event.target.getAttribute("data-id");
+    const wrapper = event.target.getAttribute("data-wrapper");
+    const deletionId = event.target.getAttribute("data-id");
 
-    this.setState({
-      [form]: this.state[form].filter((element) => element.id !== parseInt(id)),
-    });
+    this.setState((prevState) => ({
+      personalInfo: {
+        ...prevState.personalInfo,
+        [wrapper]: prevState.personalInfo[wrapper].filter(
+          (entry) => entry.id !== parseInt(deletionId)
+        ),
+      },
+    }));
   }
 
   render() {
     const form = (
       <Form
         personalInfo={this.state.personalInfo}
-        experience={this.state.experience}
-        education={this.state.education}
         handleChange={this.handleChange}
         addEntry={this.addEntry}
         deleteEntry={this.deleteEntry}
       />
     );
 
+    const preview = <Preview personalInfo={this.state.personalInfo} />;
+
     return (
-      <div className="App">
+      <div className="app">
         <ModeToggle
           handleClick={this.toggleMode}
           isEditMode={this.state.isEditMode}
         />
-        {this.state.isEditMode ? form : ""}
+        {this.state.isEditMode ? form : preview}
       </div>
     );
   }

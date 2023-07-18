@@ -1,0 +1,27 @@
+.tag-selector-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-tag-button,
+.delete-tag-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  min-width: 20px;
+  padding: 6px;
+  border-radius: 15px;
+}

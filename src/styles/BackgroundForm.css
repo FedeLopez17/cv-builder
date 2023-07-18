@@ -1,0 +1,15 @@
+.background-form-header {
+  display: flex;
+}
+
+.add-background-entry-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.background-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

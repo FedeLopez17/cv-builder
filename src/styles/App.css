@@ -1,1 +1,9 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+datalist {
+  position: absolute;
+}

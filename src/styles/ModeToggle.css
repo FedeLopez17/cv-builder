@@ -1,5 +1,8 @@
 #mode-toggle {
+  align-self: center;
   display: flex;
+  align-items: center;
+  height: 50px;
 }
 
 #mode-toggle > .active {
