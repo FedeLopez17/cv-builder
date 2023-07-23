@@ -29,7 +29,7 @@ export default class LocationSelectorInput extends React.Component {
           value={value}
           autoComplete={autoComplete ? "on" : "false"}
           {...(autoCapitalize && {
-            autocapitalize: autoCapitalize,
+            autoCapitalize,
           })}
           {...(placeholder && {
             placeholder,
