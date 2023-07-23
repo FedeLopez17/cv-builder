@@ -9,8 +9,8 @@ const COUNTRIES = countriesData.reduce((acc, country) => {
   return acc;
 }, {});
 
-const COUNTRY_OPTIONS = Object.keys(COUNTRIES).map((country, index) => (
-  <option value={country} key={index}></option>
+const COUNTRY_OPTIONS = Object.keys(COUNTRIES).map((country) => (
+  <option value={country} key={country} />
 ));
 
 export default class LocationSelector extends React.Component {
@@ -84,13 +84,13 @@ export default class LocationSelector extends React.Component {
               return acc;
             }, {}),
             regionOptionsArr: fetchedData.map((regionData) => (
-              <option value={regionData.name} key={regionData.id}></option>
+              <option value={regionData.name} key={regionData.id} />
             )),
             cityOptionsArr: [],
           }
         : {
             cityOptionsArr: fetchedData.map((cityData) => (
-              <option value={cityData.name} key={cityData.id}></option>
+              <option value={cityData.name} key={cityData.id} />
             )),
           };
 
