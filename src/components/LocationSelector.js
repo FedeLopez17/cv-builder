@@ -1,6 +1,7 @@
 import React from "react";
 import countriesData from "../data/countriesData.json";
 import "../styles/LocationSelector.css";
+import LocationSelectorInput from "./LocationSelectorInput";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -122,80 +123,59 @@ export default class LocationSelector extends React.Component {
   render() {
     const { location, handleChange } = this.props;
 
+    const inputs = [
+      {
+        labelText: "Country:",
+        inputId: "country",
+        name: "country",
+        value: location.country,
+        placeholder: "Uruguay",
+        dataListId: "country-names-list",
+        dataListOptions: COUNTRY_OPTIONS,
+      },
+      {
+        labelText: "Region:",
+        inputId: "region",
+        name: "region",
+        value: location.region,
+        placeholder: "Montevideo",
+        dataListId: "country-regions-list",
+        dataListOptions: this.state.regionOptionsArr,
+      },
+      {
+        labelText: "City:",
+        inputId: "city",
+        name: "city",
+        value: location.city,
+        placeholder: "Montevideo",
+        dataListId: "region-cities-list",
+        dataListOptions: this.state.cityOptionsArr,
+      },
+      {
+        labelText: "Address:",
+        inputId: "address",
+        name: "address",
+        value: location.address,
+      },
+      {
+        labelText: "Postal code:",
+        inputId: "postal-code",
+        name: "postalCode",
+        value: location.postalCode,
+      },
+    ].map((inputData, index) => (
+      <LocationSelectorInput
+        {...inputData}
+        autoComplete={true}
+        handleChange={handleChange}
+        key={index}
+      />
+    ));
+
     return (
       <fieldset className="location-selector">
         <legend>Location:</legend>
-        <label htmlFor="country">Country:</label>
-        <input
-          type="text"
-          data-wrapper="location"
-          id="country"
-          name="country"
-          list="country-names-list"
-          value={location.country}
-          autoComplete="off"
-          placeholder="Uruguay"
-          onChange={handleChange}
-        />
-        <datalist id="country-names-list">{COUNTRY_OPTIONS}</datalist>
-
-        <label htmlFor="region">Region:</label>
-        <input
-          type="text"
-          data-wrapper="location"
-          id="region"
-          name="region"
-          {...(!!this.state.regionOptionsArr.length && {
-            list: "country-regions-list",
-          })}
-          value={location.region}
-          autoComplete="off"
-          placeholder="Montevideo"
-          onChange={handleChange}
-        />
-        {!!this.state.regionOptionsArr.length && (
-          <datalist id="country-regions-list">
-            {this.state.regionOptionsArr}
-          </datalist>
-        )}
-
-        <label htmlFor="city">City:</label>
-        <input
-          type="text"
-          data-wrapper="location"
-          id="city"
-          name="city"
-          {...(!!this.state.cityOptionsArr.length && { list: "cities-list" })}
-          value={location.city}
-          autoComplete="off"
-          placeholder="Montevideo"
-          onChange={handleChange}
-        />
-        {!!this.state.cityOptionsArr.length && (
-          <datalist id="cities-list">{this.state.cityOptionsArr}</datalist>
-        )}
-
-        <label htmlFor="address">Address:</label>
-        <input
-          type="text"
-          data-wrapper="location"
-          id="address"
-          name="address"
-          value={location.address}
-          placeholder=""
-          onChange={handleChange}
-        />
-
-        <label htmlFor="postal-code">Postal code:</label>
-        <input
-          type="text"
-          data-wrapper="location"
-          id="postal-code"
-          name="postalCode"
-          value={location.postalCode}
-          placeholder=""
-          onChange={handleChange}
-        />
+        {inputs}
       </fieldset>
     );
   }
