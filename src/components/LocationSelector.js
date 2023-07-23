@@ -53,7 +53,7 @@ export default class LocationSelector extends React.Component {
     return data;
   }
 
-  async updateDatalistsState({ countryChanged }) {
+  async updateDatalistsState(countryChanged) {
     const { location } = this.props;
     const initialState = {
       cityOptionsArr: [],
@@ -109,13 +109,13 @@ export default class LocationSelector extends React.Component {
     const { location } = this.props;
 
     if (oldLocation.country !== location.country) {
-      this.updateDatalistsState({ countryChanged: true });
+      this.updateDatalistsState(true);
     } else if (
       COUNTRIES[location.country] &&
       oldLocation.country === location.country &&
       oldLocation.region !== location.region
     ) {
-      this.updateDatalistsState({ countryChanged: false });
+      this.updateDatalistsState(false);
     }
   }
 
