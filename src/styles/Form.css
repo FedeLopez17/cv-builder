@@ -3,6 +3,7 @@
   background-color: skyblue;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
 }
 
 #forms-container > * {
@@ -28,44 +29,9 @@ input#phone {
 
 label[for="description"],
 textarea#description,
+.location-selector,
 #online-presence-inputs,
 .tag-selector,
 .background-form {
   grid-column: 1/-1;
-}
-
-label[for="first-name"],
-label[for="last-name"] {
-  grid-row: 1;
-}
-
-input#first-name,
-input#last-name {
-  grid-row: 2;
-}
-
-label[for="role"] {
-  grid-row: 3;
-}
-
-input#role {
-  grid-row: 4;
-}
-
-label[for="description"] {
-  grid-row: 5;
-}
-
-textarea#description {
-  grid-row: 6;
-}
-
-label[for="email"],
-label[for="phone"] {
-  grid-row: 7;
-}
-
-input#email,
-input#phone {
-  grid-row: 8;
 }

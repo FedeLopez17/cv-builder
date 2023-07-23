@@ -2,8 +2,9 @@ import React from "react";
 import "../styles/Form.css";
 import OnlinePresenceInputs from "./OnlinePresenceInputs";
 import TagSelector from "./TagSelector";
-import data from "../data";
+import formData from "../data/formData";
 import BackgroundForm from "./BackgroundForm";
+import LocationSelector from "./LocationSelector";
 
 export default class Form extends React.Component {
   render() {
@@ -45,7 +46,7 @@ export default class Form extends React.Component {
           onChange={handleChange}
         />
         <datalist id="roles-list">
-          {data.roles.map((ele, index) => (
+          {formData.roles.map((ele, index) => (
             <option value={ele} key={index} />
           ))}
         </datalist>
@@ -80,6 +81,11 @@ export default class Form extends React.Component {
           onChange={handleChange}
         />
 
+        <LocationSelector
+          location={personalInfo.location}
+          handleChange={handleChange}
+        />
+
         <OnlinePresenceInputs
           personalInfo={personalInfo}
           handleChange={handleChange}
@@ -94,7 +100,7 @@ export default class Form extends React.Component {
               input: {
                 type: "text",
                 placeholder: "Reading",
-                dataList: { data: data.hobbies, id: "hobbies-data-list" },
+                dataList: { data: formData.hobbies, id: "hobbies-data-list" },
                 name: "hobby",
                 id: "hobby-input",
                 showInTag: true,
@@ -116,7 +122,7 @@ export default class Form extends React.Component {
                 type: "text",
                 placeholder: "English",
                 dataList: {
-                  data: data.languages.languages,
+                  data: formData.languages.languages,
                   id: "languages-languages-data-list",
                 },
                 name: "language",
@@ -130,7 +136,7 @@ export default class Form extends React.Component {
                 type: "text",
                 placeholder: "Level",
                 dataList: {
-                  data: data.languages.levels,
+                  data: formData.languages.levels,
                   id: "languages-levels-data-list",
                 },
                 name: "level",
@@ -154,7 +160,7 @@ export default class Form extends React.Component {
                 type: "text",
                 placeholder: "Communication",
                 dataList: {
-                  data: data.softSkills,
+                  data: formData.softSkills,
                   id: "soft-skills-data-list",
                 },
                 name: "skill",
@@ -178,7 +184,7 @@ export default class Form extends React.Component {
                 type: "text",
                 placeholder: "Git",
                 dataList: {
-                  data: data.softSkills,
+                  data: formData.softSkills,
                   id: "technical-skills-data-list",
                 },
                 name: "skill",
@@ -221,7 +227,7 @@ export default class Form extends React.Component {
               input: {
                 type: "text",
                 placeholder: "CEO",
-                dataList: { data: data.roles, id: "roles-data-list" },
+                dataList: { data: formData.roles, id: "roles-data-list" },
                 name: "role",
                 id: "reference-role-input",
                 showInTag: false,

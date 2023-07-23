@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../data";
+import formData from "../data/formData";
 
 export default class OnlinePresenceInputs extends React.Component {
   render() {
@@ -65,7 +65,7 @@ export default class OnlinePresenceInputs extends React.Component {
 
         <details>
           <summary>Social Media</summary>
-          {data.socialMediaInputs.map((data, index) => {
+          {formData.socialMediaInputs.map((data, index) => {
             const element = _getFieldset(data);
             return React.cloneElement(element, { key: index });
           })}

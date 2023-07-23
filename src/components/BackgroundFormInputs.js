@@ -1,5 +1,5 @@
 import React from "react";
-import data from "../data";
+import formData from "../data/formData";
 import Helpers from "../Helpers";
 
 export default class BackgroundFormInputs extends React.Component {
@@ -45,7 +45,7 @@ export default class BackgroundFormInputs extends React.Component {
           onChange={handleChange}
         ></input>
         <datalist id={`${inputOneName}-list`}>
-          {data[`${inputOneName}s`].map((ele, index) => (
+          {formData[`${inputOneName}s`].map((ele, index) => (
             <option value={ele} key={index} />
           ))}
         </datalist>
