@@ -6,8 +6,8 @@ import "../styles/BackgroundForm.css";
 import { FaPlusCircle } from "react-icons/fa";
 
 export default class BackgroundForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       formIsActive: false,
       inputValues: {},

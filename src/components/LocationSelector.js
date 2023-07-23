@@ -14,8 +14,8 @@ const COUNTRY_OPTIONS = Object.keys(COUNTRIES).map((country, index) => (
 ));
 
 export default class LocationSelector extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       cache: {},

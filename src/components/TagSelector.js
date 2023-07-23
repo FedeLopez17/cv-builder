@@ -7,8 +7,8 @@ import { FaPlusCircle } from "react-icons/fa";
 import "../styles/TagSelector.css";
 
 export default class TagSelector extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       formIsActive: false,
       inputValues: {},
