@@ -105,15 +105,15 @@ export default class LocationSelector extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const oldLocation = prevProps.location;
-    const { location } = this.props;
+    const { country: oldCountry, region: oldRegion } = prevProps.location;
+    const { country, region } = this.props.location;
 
-    if (oldLocation.country !== location.country) {
+    if (oldCountry !== country) {
       this.updateDatalistsState(true);
     } else if (
-      COUNTRIES[location.country] &&
-      oldLocation.country === location.country &&
-      oldLocation.region !== location.region
+      COUNTRIES[country] &&
+      oldCountry === country &&
+      oldRegion !== region
     ) {
       this.updateDatalistsState(false);
     }
