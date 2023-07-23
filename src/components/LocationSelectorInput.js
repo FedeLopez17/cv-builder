@@ -9,6 +9,7 @@ export default class LocationSelectorInput extends React.Component {
       name,
       value,
       autoComplete,
+      autoCapitalize,
       placeholder,
       dataListId,
       dataListOptions,
@@ -27,8 +28,11 @@ export default class LocationSelectorInput extends React.Component {
           })}
           value={value}
           autoComplete={autoComplete ? "on" : "false"}
+          {...(autoCapitalize && {
+            autocapitalize: autoCapitalize,
+          })}
           {...(placeholder && {
-            placeholder: placeholder,
+            placeholder,
           })}
           onChange={handleChange}
         />
