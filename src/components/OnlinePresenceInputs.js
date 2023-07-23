@@ -5,7 +5,7 @@ export default class OnlinePresenceInputs extends React.Component {
   render() {
     const { personalInfo, handleChange } = this.props;
 
-    const _getFieldset = ({
+    const getFieldset = ({
       wrapper,
       name,
       legend,
@@ -54,7 +54,7 @@ export default class OnlinePresenceInputs extends React.Component {
 
     return (
       <section id="online-presence-inputs">
-        {_getFieldset({
+        {getFieldset({
           wrapper: "website",
           name: "domain",
           legend: "Website",
@@ -66,7 +66,7 @@ export default class OnlinePresenceInputs extends React.Component {
         <details>
           <summary>Social Media</summary>
           {formData.socialMediaInputs.map((data, index) => {
-            const element = _getFieldset(data);
+            const element = getFieldset(data);
             return React.cloneElement(element, { key: index });
           })}
         </details>
