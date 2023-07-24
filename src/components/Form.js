@@ -96,14 +96,19 @@ export default class Form extends React.Component {
           wrapper="hobbies"
           inputsData={[
             {
-              label: { text: "Hobby", for: "hobby-input" },
+              labelText: "Hobby:",
               input: {
-                type: "text",
-                placeholder: "Reading",
-                dataList: { data: formData.hobbies, id: "hobbies-data-list" },
-                name: "hobby",
-                id: "hobby-input",
-                showInTag: true,
+                attributes: {
+                  type: "text",
+                  placeholder: "Reading",
+                  list: "hobbies-data-list",
+                  name: "hobby",
+                  id: "hobby-input",
+                },
+                data: {
+                  showInTag: true,
+                  dataList: formData.hobbies,
+                },
               },
             },
           ]}
@@ -117,31 +122,35 @@ export default class Form extends React.Component {
           wrapper="languages"
           inputsData={[
             {
-              label: { text: "Language", for: "language-input" },
+              labelText: "Language:",
               input: {
-                type: "text",
-                placeholder: "English",
-                dataList: {
-                  data: formData.languages.languages,
-                  id: "languages-languages-data-list",
+                attributes: {
+                  type: "text",
+                  placeholder: "English",
+                  list: "languages-languages-data-list",
+                  name: "language",
+                  id: "languages-language-input",
                 },
-                name: "language",
-                id: "languages-language-input",
-                showInTag: true,
+                data: {
+                  showInTag: true,
+                  dataList: formData.languages.languages,
+                },
               },
             },
             {
-              label: { text: "Level", for: "languages-level-input" },
+              labelText: "Level:",
               input: {
-                type: "text",
-                placeholder: "Level",
-                dataList: {
-                  data: formData.languages.levels,
-                  id: "languages-levels-data-list",
+                attributes: {
+                  type: "text",
+                  placeholder: "Level",
+                  list: "languages-levels-data-list",
+                  name: "level",
+                  id: "languages-level-input",
                 },
-                name: "level",
-                id: "languages-level-input",
-                showInTag: true,
+                data: {
+                  showInTag: true,
+                  dataList: formData.languages.levels,
+                },
               },
             },
           ]}
@@ -155,17 +164,19 @@ export default class Form extends React.Component {
           wrapper="softSkills"
           inputsData={[
             {
-              label: { text: "Skill", for: "soft-skill-input" },
+              labelText: "Skill:",
               input: {
-                type: "text",
-                placeholder: "Communication",
-                dataList: {
-                  data: formData.softSkills,
-                  id: "soft-skills-data-list",
+                attributes: {
+                  type: "text",
+                  placeholder: "Communication",
+                  list: "soft-skills-data-list",
+                  name: "skill",
+                  id: "soft-skill-input",
                 },
-                name: "skill",
-                id: "soft-skill-input",
-                showInTag: true,
+                data: {
+                  showInTag: true,
+                  dataList: formData.softSkills,
+                },
               },
             },
           ]}
@@ -179,17 +190,19 @@ export default class Form extends React.Component {
           wrapper="technicalSkills"
           inputsData={[
             {
-              label: { text: "Skill", for: "technical-skill-input" },
+              labelText: "Skill:",
               input: {
-                type: "text",
-                placeholder: "Git",
-                dataList: {
-                  data: formData.softSkills,
-                  id: "technical-skills-data-list",
+                attributes: {
+                  type: "text",
+                  placeholder: "Git",
+                  list: "technical-skills-data-list",
+                  name: "skill",
+                  id: "technical-skill-input",
                 },
-                name: "skill",
-                id: "technical-skill-input",
-                showInTag: true,
+                data: {
+                  showInTag: true,
+                  dataList: formData.softSkills,
+                },
               },
             },
           ]}
@@ -203,64 +216,76 @@ export default class Form extends React.Component {
           wrapper="references"
           inputsData={[
             {
-              label: { text: "Name", for: "reference-name-input" },
+              labelText: "Name:",
               input: {
-                type: "text",
-                placeholder: "Jason",
-                name: "name",
-                id: "reference-name-input",
-                showInTag: true,
+                attributes: {
+                  type: "text",
+                  placeholder: "Jason",
+                  name: "name",
+                  id: "reference-name-input",
+                },
+                data: { showInTag: true },
               },
             },
             {
-              label: { text: "Last Name", for: "reference-last-name-input" },
+              labelText: "Last Name:",
               input: {
-                type: "text",
-                placeholder: "Smith",
-                name: "lastName",
-                id: "reference-last-name-input",
-                showInTag: true,
+                attributes: {
+                  type: "text",
+                  placeholder: "Smith",
+                  name: "lastName",
+                  id: "reference-last-name-input",
+                },
+                data: { showInTag: true },
               },
             },
             {
-              label: { text: "Role", for: "reference-role-input" },
+              labelText: "Role:",
               input: {
-                type: "text",
-                placeholder: "CEO",
-                dataList: { data: formData.roles, id: "roles-data-list" },
-                name: "role",
-                id: "reference-role-input",
-                showInTag: false,
+                attributes: {
+                  type: "text",
+                  placeholder: "CEO",
+                  dataList: { data: formData.roles, id: "roles-data-list" },
+                  name: "role",
+                  id: "reference-role-input",
+                },
+                data: { showInTag: false },
               },
             },
             {
-              label: { text: "Company", for: "reference-company-input" },
+              labelText: "Company:",
               input: {
-                type: "text",
-                placeholder: "Google",
-                name: "company",
-                id: "reference-company-input",
-                showInTag: true,
+                attributes: {
+                  type: "text",
+                  placeholder: "Google",
+                  name: "company",
+                  id: "reference-company-input",
+                },
+                data: { showInTag: true },
               },
             },
             {
-              label: { text: "Phone", for: "reference-phone-input" },
+              labelText: "Phone:",
               input: {
-                type: "tel",
-                placeholder: "1234567",
-                name: "phone",
-                id: "reference-phone-input",
-                showInTag: false,
+                attributes: {
+                  type: "tel",
+                  placeholder: "1234567",
+                  name: "phone",
+                  id: "reference-phone-input",
+                },
+                data: { showInTag: false },
               },
             },
             {
-              label: { text: "Email", for: "reference-email-input" },
+              labelText: "Email:",
               input: {
-                type: "email",
-                placeholder: "reference@example.com",
-                name: "email",
-                id: "reference-email-input",
-                showInTag: false,
+                attributes: {
+                  type: "email",
+                  placeholder: "reference@example.com",
+                  name: "email",
+                  id: "reference-email-input",
+                },
+                data: { showInTag: false },
               },
             },
           ]}

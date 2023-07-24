@@ -8,13 +8,13 @@ export default class TagSelectorTag extends React.Component {
     return (
       <section className="tag" data-id={entry.id}>
         {inputsData
-          .filter((inputData) => inputData.input.showInTag)
+          .filter((inputData) => inputData.input.data.showInTag)
           .map((inputData, index) => (
             <p
-              className={`${wrapper}-tag-info ${inputData.input.name}`}
+              className={`${wrapper}-tag-info ${inputData.input.attributes.name}`}
               key={index}
             >
-              {entry[inputData.input.name]}
+              {entry[inputData.input.attributes.name]}
             </p>
           ))}
 

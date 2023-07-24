@@ -23,7 +23,7 @@ export default class TagSelector extends React.Component {
     const initialState = {};
 
     inputsData.forEach((data) => {
-      initialState[data.input.name] = "";
+      initialState[data.input.attributes.name] = "";
     });
 
     this.setState({ inputValues: initialState });
@@ -54,14 +54,19 @@ export default class TagSelector extends React.Component {
       />
     ));
 
-    const inputsArr = inputsData.map((inputData, index) => (
-      <TagSelectorInput
-        inputData={inputData}
-        inputValues={this.state.inputValues}
-        handleChange={this.handleChange}
-        key={index}
-      />
-    ));
+    const inputsArr = inputsData.map((inputData, index) => {
+      const inputName = inputData.input.attributes.name;
+      const value = this.state.inputValues[inputName];
+      inputData.attributes = { ...inputData.attributes, value };
+
+      return (
+        <TagSelectorInput
+          inputData={inputData}
+          handleChange={this.handleChange}
+          key={index}
+        />
+      );
+    });
 
     const form = (
       <section className="tags-form">
