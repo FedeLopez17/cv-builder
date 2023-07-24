@@ -3,7 +3,6 @@ import React from "react";
 export default class TagSelectorInput extends React.Component {
   render() {
     const { inputData, handleChange } = this.props;
-    console.log(inputData);
     const {
       labelText,
       input: { attributes, data },
