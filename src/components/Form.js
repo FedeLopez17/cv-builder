@@ -220,6 +220,7 @@ export default class Form extends React.Component {
               input: {
                 attributes: {
                   type: "text",
+                  autoCapitalize: "words",
                   placeholder: "Jason",
                   name: "name",
                   id: "reference-name-input",
@@ -232,6 +233,7 @@ export default class Form extends React.Component {
               input: {
                 attributes: {
                   type: "text",
+                  autoCapitalize: "words",
                   placeholder: "Smith",
                   name: "lastName",
                   id: "reference-last-name-input",
@@ -245,11 +247,11 @@ export default class Form extends React.Component {
                 attributes: {
                   type: "text",
                   placeholder: "CEO",
-                  dataList: { data: formData.roles, id: "roles-data-list" },
+                  list: "roles-data-list",
                   name: "role",
                   id: "reference-role-input",
                 },
-                data: { showInTag: false },
+                data: { showInTag: false, dataList: formData.roles },
               },
             },
             {
