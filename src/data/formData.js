@@ -64,6 +64,14 @@ const data = {
       urlPlaceHolder: "https://github.com/JohnDoe71",
     },
     {
+      wrapper: "gitlab",
+      name: "userName",
+      legend: "GitLab",
+      userLabel: "User",
+      userPlaceHolder: "",
+      urlPlaceHolder: "",
+    },
+    {
       wrapper: "instagram",
       name: "userName",
       legend: "Instagram",

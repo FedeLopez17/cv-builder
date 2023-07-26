@@ -27,6 +27,7 @@ export default class App extends React.Component {
         website: { domain: "", url: "", redirect: false },
         linkedin: { userName: "", url: "", redirect: false },
         github: { userName: "", url: "", redirect: false },
+        gitlab: { userName: "", url: "", redirect: false },
         instagram: { userName: "", url: "", redirect: false },
         twitter: { userName: "", url: "", redirect: false },
         facebook: { userName: "", url: "", redirect: false },
