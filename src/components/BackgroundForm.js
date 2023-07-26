@@ -52,26 +52,34 @@ export default class BackgroundForm extends React.Component {
   }
 
   render() {
-    const { isEducation, prevEntries, addEntry } = this.props;
+    const { isEducation, prevEntries, addEntry, editEntry, deleteEntry } =
+      this.props;
     const wrapper = isEducation ? "education" : "experience";
 
     const inputOneName = isEducation ? "degree" : "role";
     const inputTwoName = isEducation ? "institution" : "company";
 
+    const childrenComponentProps = {
+      wrapper,
+      inputOneName,
+      inputTwoName,
+      isEducation,
+      editEntry,
+      deleteEntry,
+      inputValues: this.state.inputValues,
+      handleChange: this.handleChange,
+    };
+
     const prevEntriesArr = prevEntries.map((entry) => (
       <BackgroundFormPreview
-        {...{ entry, wrapper, inputOneName, inputTwoName }}
+        {...{ ...childrenComponentProps, entry }}
         key={entry.id}
       />
     ));
 
     const form = (
-      <section className="form">
-        <BackgroundFormInputs
-          {...{ wrapper, inputOneName, inputTwoName, isEducation }}
-          inputValues={this.state.inputValues}
-          handleChange={this.handleChange}
-        />
+      <section className="form add-entry-form">
+        <BackgroundFormInputs {...childrenComponentProps} />
 
         <button
           type="button"

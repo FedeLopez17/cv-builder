@@ -8,7 +8,8 @@ import LocationSelector from "./LocationSelector";
 
 export default class Form extends React.Component {
   render() {
-    const { personalInfo, handleChange, addEntry, deleteEntry } = this.props;
+    const { personalInfo, handleChange, addEntry, editEntry, deleteEntry } =
+      this.props;
 
     return (
       <form className="Form" id="forms-container">
@@ -86,10 +87,7 @@ export default class Form extends React.Component {
           handleChange={handleChange}
         />
 
-        <OnlinePresenceInputs
-          personalInfo={personalInfo}
-          handleChange={handleChange}
-        />
+        <OnlinePresenceInputs {...{ personalInfo, handleChange }} />
 
         <TagSelector
           title="Hobbies"
@@ -113,8 +111,7 @@ export default class Form extends React.Component {
             },
           ]}
           prevEntries={personalInfo.hobbies}
-          addEntry={addEntry}
-          deleteEntry={deleteEntry}
+          {...{ addEntry, deleteEntry }}
         />
 
         <TagSelector
@@ -155,8 +152,7 @@ export default class Form extends React.Component {
             },
           ]}
           prevEntries={personalInfo.languages}
-          addEntry={addEntry}
-          deleteEntry={deleteEntry}
+          {...{ addEntry, deleteEntry }}
         />
 
         <TagSelector
@@ -181,8 +177,7 @@ export default class Form extends React.Component {
             },
           ]}
           prevEntries={personalInfo.softSkills}
-          addEntry={addEntry}
-          deleteEntry={deleteEntry}
+          {...{ addEntry, deleteEntry }}
         />
 
         <TagSelector
@@ -207,8 +202,7 @@ export default class Form extends React.Component {
             },
           ]}
           prevEntries={personalInfo.technicalSkills}
-          addEntry={addEntry}
-          deleteEntry={deleteEntry}
+          {...{ addEntry, deleteEntry }}
         />
 
         <TagSelector
@@ -292,20 +286,19 @@ export default class Form extends React.Component {
             },
           ]}
           prevEntries={personalInfo.references}
-          addEntry={addEntry}
-          deleteEntry={deleteEntry}
+          {...{ addEntry, deleteEntry }}
         />
 
         <BackgroundForm
           isEducation={true}
           prevEntries={personalInfo.education}
-          addEntry={addEntry}
+          {...{ addEntry, editEntry, deleteEntry }}
         />
 
         <BackgroundForm
           isEducation={false}
           prevEntries={personalInfo.experience}
-          addEntry={addEntry}
+          {...{ addEntry, editEntry, deleteEntry }}
         />
       </form>
     );

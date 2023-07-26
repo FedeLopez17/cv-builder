@@ -50,6 +50,7 @@ export default class App extends React.Component {
     this.toggleMode = this.toggleMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addEntry = this.addEntry.bind(this);
+    this.editEntry = this.editEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
   }
 
@@ -117,6 +118,24 @@ export default class App extends React.Component {
     });
   }
 
+  editEntry(event) {
+    const wrapper = event.target.getAttribute("data-wrapper");
+    const editedEntry = JSON.parse(event.target.getAttribute("data-entry"));
+
+    this.setState((prevState) => {
+      const updatedEntries = prevState.personalInfo[wrapper].map((entry) =>
+        entry.id === editedEntry.id ? editedEntry : entry
+      );
+
+      return {
+        personalInfo: {
+          ...prevState.personalInfo,
+          [wrapper]: updatedEntries,
+        },
+      };
+    });
+  }
+
   deleteEntry(event) {
     const wrapper = event.target.getAttribute("data-wrapper");
     const deletionId = event.target.getAttribute("data-id");
@@ -137,6 +156,7 @@ export default class App extends React.Component {
         personalInfo={this.state.personalInfo}
         handleChange={this.handleChange}
         addEntry={this.addEntry}
+        editEntry={this.editEntry}
         deleteEntry={this.deleteEntry}
       />
     );
