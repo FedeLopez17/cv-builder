@@ -6,6 +6,7 @@ export default class BackgroundFormInputs extends React.Component {
   render() {
     const {
       inputValues,
+      invalidInputs,
       handleChange,
       wrapper,
       inputOneName,
@@ -37,6 +38,9 @@ export default class BackgroundFormInputs extends React.Component {
         <input
           type="text"
           id={`${inputOneName}-input`}
+          {...(invalidInputs.includes(inputOneName) && {
+            className: "invalid",
+          })}
           placeholder={placeHolderOne}
           list={`${inputOneName}-list`}
           autoComplete="off"
@@ -56,6 +60,9 @@ export default class BackgroundFormInputs extends React.Component {
         <input
           type="text"
           id={`${inputTwoName}-input`}
+          {...(invalidInputs.includes(inputTwoName) && {
+            className: "invalid",
+          })}
           placeholder={placeHolderTwo}
           autoComplete="off"
           name={inputTwoName}
@@ -68,6 +75,7 @@ export default class BackgroundFormInputs extends React.Component {
           type="month"
           min={minDate}
           max={maxDate}
+          {...(invalidInputs.includes("fromDate") && { className: "invalid" })}
           id={`${wrapper}-from-date-input`}
           name="fromDate"
           value={inputValues.fromDate}
@@ -79,6 +87,7 @@ export default class BackgroundFormInputs extends React.Component {
           type="month"
           min={minDate}
           max={maxDate}
+          {...(invalidInputs.includes("toDate") && { className: "invalid" })}
           id={`${wrapper}-to-date-input`}
           name="toDate"
           value={inputValues.toDate}
@@ -92,7 +101,7 @@ export default class BackgroundFormInputs extends React.Component {
         <input
           type="checkbox"
           checked={inputValues.inProgress}
-          d={`${wrapper}-in-progress-input`}
+          id={`${wrapper}-in-progress-input`}
           name="inProgress"
           value={inputValues.inProgress}
           onChange={handleChange}

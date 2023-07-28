@@ -11,16 +11,19 @@ export default class BackgroundForm extends React.Component {
     this.state = {
       formIsActive: false,
       inputValues: {},
+      invalidInputs: [],
     };
 
-    this.toggleForm = this.toggleForm.bind(this);
+    this.initializeState = this.initializeState.bind(this);
+    this.openForm = this.openForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.validateAndAddEntry = this.validateAndAddEntry.bind(this);
   }
 
-  initializeInputsState() {
+  initializeState() {
     const { isEducation } = this.props;
 
-    const initialState = {
+    const initialValues = {
       fromDate: "",
       toDate: "",
       inProgress: false,
@@ -29,15 +32,21 @@ export default class BackgroundForm extends React.Component {
         : { company: "", role: "" }),
     };
 
-    this.setState({ inputValues: initialState });
+    this.setState({
+      formIsActive: false,
+      inputValues: initialValues,
+      invalidInputs: [],
+    });
   }
 
   componentDidMount() {
-    this.initializeInputsState();
+    this.initializeState();
   }
 
-  toggleForm() {
-    this.setState((prevState) => ({ formIsActive: !prevState.formIsActive }));
+  openForm() {
+    if (!this.state.formIsActive) {
+      this.setState({ formIsActive: true });
+    }
   }
 
   handleChange({ target: { name, type, value, checked } }) {
@@ -48,12 +57,42 @@ export default class BackgroundForm extends React.Component {
         ...prevState.inputValues,
         [name]: isCheckbox ? checked : value,
       },
+      invalidInputs: prevState.invalidInputs.filter(
+        (inputName) => inputName !== (name === "inProgress" ? "toDate" : name)
+      ),
     }));
   }
 
+  validateAndAddEntry(event) {
+    const { addEntry } = this.props;
+
+    const invalidInputs = Object.entries(this.state.inputValues).reduce(
+      (acc, [key, value]) => {
+        if (
+          (key !== "toDate" && key !== "inProgress" && !value) ||
+          (key === "toDate" && !value && !this.state.inputValues.inProgress)
+        ) {
+          acc.push(key);
+        }
+        return acc;
+      },
+      []
+    );
+
+    if (invalidInputs.length) {
+      this.setState((prevState) => ({
+        invalidInputs: [...prevState.invalidInputs, ...invalidInputs],
+      }));
+
+      return;
+    }
+
+    addEntry(event);
+    this.initializeState();
+  }
+
   render() {
-    const { isEducation, prevEntries, addEntry, editEntry, deleteEntry } =
-      this.props;
+    const { isEducation, prevEntries, editEntry, deleteEntry } = this.props;
     const wrapper = isEducation ? "education" : "experience";
 
     const inputOneName = isEducation ? "degree" : "role";
@@ -67,6 +106,7 @@ export default class BackgroundForm extends React.Component {
       editEntry,
       deleteEntry,
       inputValues: this.state.inputValues,
+      invalidInputs: this.state.invalidInputs,
       handleChange: this.handleChange,
     };
 
@@ -84,7 +124,7 @@ export default class BackgroundForm extends React.Component {
         <button
           type="button"
           className="cancel-entry-button"
-          onClick={this.toggleForm}
+          onClick={this.initializeState}
         >
           Cancel
         </button>
@@ -94,7 +134,7 @@ export default class BackgroundForm extends React.Component {
           data-wrapper={wrapper}
           data-entry={JSON.stringify(this.state.inputValues)}
           className="add-entry-button"
-          onClick={addEntry}
+          onClick={this.validateAndAddEntry}
         >
           Add Entry
         </button>
@@ -110,7 +150,7 @@ export default class BackgroundForm extends React.Component {
           <button
             type="button"
             className="add-background-entry-button"
-            onClick={this.toggleForm}
+            onClick={this.openForm}
             title="Add"
           >
             <FaPlusCircle />
