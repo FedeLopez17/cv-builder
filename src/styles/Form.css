@@ -35,3 +35,7 @@ textarea#description,
 .background-form {
   grid-column: 1/-1;
 }
+
+input.invalid {
+  background-color: red;
+}

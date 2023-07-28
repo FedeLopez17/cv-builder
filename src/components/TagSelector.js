@@ -12,40 +12,74 @@ export default class TagSelector extends React.Component {
     this.state = {
       formIsActive: false,
       inputValues: {},
+      invalidInputs: [],
     };
 
-    this.toggleForm = this.toggleForm.bind(this);
+    this.openForm = this.openForm.bind(this);
+    this.initializeState = this.initializeState.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.validateAndAddEntry = this.validateAndAddEntry.bind(this);
   }
 
-  initializeInputsState() {
+  initializeState() {
     const { inputsData } = this.props;
-    const initialState = {};
 
+    const initialInputValues = {};
     inputsData.forEach((data) => {
-      initialState[data.input.attributes.name] = "";
+      initialInputValues[data.input.attributes.name] = "";
     });
 
-    this.setState({ inputValues: initialState });
+    this.setState({
+      formIsActive: false,
+      inputValues: initialInputValues,
+      invalidInputs: [],
+    });
   }
 
   componentDidMount() {
-    this.initializeInputsState();
+    this.initializeState();
   }
 
-  toggleForm() {
-    this.setState((prevState) => ({ formIsActive: !prevState.formIsActive }));
+  openForm() {
+    if (!this.state.formIsActive) {
+      this.setState({ formIsActive: true });
+    }
   }
 
   handleChange({ target: { name, value } }) {
     this.setState((prevState) => ({
       inputValues: { ...prevState.inputValues, [name]: value },
+      invalidInputs: prevState.invalidInputs.filter(
+        (inputName) => inputName !== name
+      ),
     }));
   }
 
+  validateAndAddEntry(event) {
+    const { addEntry, inputsData } = this.props;
+
+    const requiredInputs = inputsData
+      .filter((inputData) => inputData.input.data.required)
+      .map((inputData) => inputData.input.attributes.name);
+
+    const invalidInputs = requiredInputs.filter(
+      (inputName) => !this.state.inputValues[inputName]
+    );
+
+    if (invalidInputs.length) {
+      this.setState((prevState) => ({
+        invalidInputs: [...prevState.invalidInputs, ...invalidInputs],
+      }));
+
+      return;
+    }
+
+    addEntry(event);
+    this.initializeState();
+  }
+
   render() {
-    const { title, wrapper, prevEntries, addEntry, deleteEntry, inputsData } =
-      this.props;
+    const { title, wrapper, prevEntries, deleteEntry, inputsData } = this.props;
 
     const tagsArr = prevEntries.map((entry) => (
       <TagSelectorTag
@@ -57,7 +91,9 @@ export default class TagSelector extends React.Component {
     const inputsArr = inputsData.map((inputData, index) => {
       const inputName = inputData.input.attributes.name;
       const value = this.state.inputValues[inputName];
-      inputData.attributes = { ...inputData.attributes, value };
+      const isInvalid = this.state.invalidInputs.includes(inputName);
+      inputData.input.attributes.value = value;
+      inputData.input.data.isInvalid = isInvalid;
 
       return (
         <TagSelectorInput
@@ -75,7 +111,7 @@ export default class TagSelector extends React.Component {
         <button
           type="button"
           className="cancel-entry-button"
-          onClick={this.toggleForm}
+          onClick={this.initializeState}
         >
           Cancel
         </button>
@@ -85,7 +121,7 @@ export default class TagSelector extends React.Component {
           data-wrapper={wrapper}
           data-entry={JSON.stringify(this.state.inputValues)}
           className="add-entry-button"
-          onClick={addEntry}
+          onClick={this.validateAndAddEntry}
         >
           Add Entry
         </button>
@@ -102,7 +138,7 @@ export default class TagSelector extends React.Component {
           <button
             type="button"
             className="add-tag-button"
-            onClick={this.toggleForm}
+            onClick={this.openForm}
             title="Add"
           >
             <FaPlusCircle />

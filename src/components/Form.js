@@ -106,6 +106,7 @@ export default class Form extends React.Component {
                 data: {
                   showInTag: true,
                   dataList: formData.hobbies,
+                  required: true,
                 },
               },
             },
@@ -131,6 +132,7 @@ export default class Form extends React.Component {
                 data: {
                   showInTag: true,
                   dataList: formData.languages.languages,
+                  required: true,
                 },
               },
             },
@@ -172,6 +174,7 @@ export default class Form extends React.Component {
                 data: {
                   showInTag: true,
                   dataList: formData.softSkills,
+                  required: true,
                 },
               },
             },
@@ -197,6 +200,7 @@ export default class Form extends React.Component {
                 data: {
                   showInTag: true,
                   dataList: formData.softSkills,
+                  required: true,
                 },
               },
             },
@@ -219,7 +223,7 @@ export default class Form extends React.Component {
                   name: "name",
                   id: "reference-name-input",
                 },
-                data: { showInTag: true },
+                data: { showInTag: true, required: true },
               },
             },
             {
@@ -232,7 +236,7 @@ export default class Form extends React.Component {
                   name: "lastName",
                   id: "reference-last-name-input",
                 },
-                data: { showInTag: true },
+                data: { showInTag: true, required: true },
               },
             },
             {
@@ -245,7 +249,11 @@ export default class Form extends React.Component {
                   name: "role",
                   id: "reference-role-input",
                 },
-                data: { showInTag: false, dataList: formData.roles },
+                data: {
+                  showInTag: false,
+                  dataList: formData.roles,
+                  required: true,
+                },
               },
             },
             {
@@ -257,7 +265,7 @@ export default class Form extends React.Component {
                   name: "company",
                   id: "reference-company-input",
                 },
-                data: { showInTag: true },
+                data: { showInTag: true, required: true },
               },
             },
             {
@@ -269,7 +277,7 @@ export default class Form extends React.Component {
                   name: "phone",
                   id: "reference-phone-input",
                 },
-                data: { showInTag: false },
+                data: { showInTag: false, required: false },
               },
             },
             {
@@ -281,7 +289,7 @@ export default class Form extends React.Component {
                   name: "email",
                   id: "reference-email-input",
                 },
-                data: { showInTag: false },
+                data: { showInTag: false, required: true },
               },
             },
           ]}

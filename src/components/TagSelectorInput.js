@@ -11,7 +11,12 @@ export default class TagSelectorInput extends React.Component {
     return (
       <>
         {labelText && <label htmlFor={attributes.id}>{labelText}</label>}
-        <input {...attributes} autoComplete="off" onChange={handleChange} />
+        <input
+          {...attributes}
+          {...(data.isInvalid && { className: "invalid" })}
+          autoComplete="off"
+          onChange={handleChange}
+        />
 
         {data.dataList && (
           <datalist id={attributes.list}>
