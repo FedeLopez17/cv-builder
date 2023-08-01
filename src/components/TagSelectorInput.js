@@ -1,4 +1,5 @@
 import React from "react";
+import InvalidInputMessage from "./InvalidInputMessage";
 
 export default class TagSelectorInput extends React.Component {
   render() {
@@ -17,6 +18,8 @@ export default class TagSelectorInput extends React.Component {
           autoComplete="off"
           onChange={handleChange}
         />
+
+        {data.isInvalid && <InvalidInputMessage />}
 
         {data.dataList && (
           <datalist id={attributes.list}>

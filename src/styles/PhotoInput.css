@@ -8,11 +8,17 @@ label[for="user-photo"] {
   width: 200px;
   aspect-ratio: 2/2;
   cursor: pointer;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+#photo-selector.invalid {
+  background-color: pink;
+  border-color: red;
 }
 
 #photo-selector > svg {

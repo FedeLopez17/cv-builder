@@ -1,6 +1,7 @@
 import React from "react";
 import formData from "../data/formData";
 import Helpers from "../Helpers";
+import InvalidInputMessage from "./InvalidInputMessage";
 
 export default class BackgroundFormInputs extends React.Component {
   render() {
@@ -48,6 +49,7 @@ export default class BackgroundFormInputs extends React.Component {
           value={inputValues[inputOneName]}
           onChange={handleChange}
         ></input>
+        {invalidInputs.includes(inputOneName) && <InvalidInputMessage />}
         <datalist id={`${inputOneName}-list`}>
           {formData[`${inputOneName}s`].map((ele, index) => (
             <option value={ele} key={index} />
@@ -69,6 +71,7 @@ export default class BackgroundFormInputs extends React.Component {
           value={inputValues[inputTwoName]}
           onChange={handleChange}
         ></input>
+        {invalidInputs.includes(inputTwoName) && <InvalidInputMessage />}
 
         <label htmlFor={`${wrapper}-from-date-input`}>From:</label>
         <input
@@ -81,6 +84,7 @@ export default class BackgroundFormInputs extends React.Component {
           value={inputValues.fromDate}
           onChange={handleChange}
         ></input>
+        {invalidInputs.includes("fromDate") && <InvalidInputMessage />}
 
         <label htmlFor={`${wrapper}-to-date-input`}>To:</label>
         <input
@@ -94,6 +98,7 @@ export default class BackgroundFormInputs extends React.Component {
           disabled={inputValues.inProgress}
           onChange={handleChange}
         ></input>
+        {invalidInputs.includes("toDate") && <InvalidInputMessage />}
 
         <label htmlFor={`${wrapper}-in-progress-input`}>
           Still {isEducation ? "studying" : "working"}:

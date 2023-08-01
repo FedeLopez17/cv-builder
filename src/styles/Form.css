@@ -39,5 +39,5 @@ textarea#description,
 }
 
 input.invalid {
-  background-color: red;
+  border: solid 2px red;
 }
