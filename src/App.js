@@ -11,6 +11,7 @@ export default class App extends React.Component {
     this.state = {
       isEditMode: true,
       personalInfo: {
+        photo: "",
         firstName: "",
         lastName: "",
         role: "",
@@ -50,6 +51,7 @@ export default class App extends React.Component {
 
     this.toggleMode = this.toggleMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.updatePhoto = this.updatePhoto.bind(this);
     this.addEntry = this.addEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
@@ -97,6 +99,12 @@ export default class App extends React.Component {
 
       return updatedState;
     });
+  }
+
+  updatePhoto(photo) {
+    this.setState((prevState) => ({
+      personalInfo: { ...prevState.personalInfo, photo },
+    }));
   }
 
   addEntry(event) {
@@ -156,6 +164,7 @@ export default class App extends React.Component {
       <Form
         personalInfo={this.state.personalInfo}
         handleChange={this.handleChange}
+        updatePhoto={this.updatePhoto}
         addEntry={this.addEntry}
         editEntry={this.editEntry}
         deleteEntry={this.deleteEntry}

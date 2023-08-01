@@ -27,6 +27,8 @@ input#phone {
   grid-column: 2;
 }
 
+label[for="user-photo"],
+input#user-photo,
 label[for="description"],
 textarea#description,
 .location-selector,

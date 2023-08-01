@@ -5,14 +5,23 @@ import TagSelector from "./TagSelector";
 import formData from "../data/formData";
 import BackgroundForm from "./BackgroundForm";
 import LocationSelector from "./LocationSelector";
+import PhotoInput from "./PhotoInput";
 
 export default class Form extends React.Component {
   render() {
-    const { personalInfo, handleChange, addEntry, editEntry, deleteEntry } =
-      this.props;
+    const {
+      personalInfo,
+      handleChange,
+      updatePhoto,
+      addEntry,
+      editEntry,
+      deleteEntry,
+    } = this.props;
 
     return (
       <form className="Form" id="forms-container">
+        <PhotoInput {...{ personalInfo, updatePhoto }} />
+
         <label htmlFor="first-name">First name:</label>
         <input
           type="text"
