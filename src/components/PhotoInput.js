@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/PhotoInput.css";
-import { FaCamera } from "react-icons/fa";
+import { FaCamera, FaTimes } from "react-icons/fa";
 import InvalidInputMessage from "./InvalidInputMessage";
 
 export default class PhotoInput extends React.Component {
@@ -26,7 +26,7 @@ export default class PhotoInput extends React.Component {
   }
 
   render() {
-    const { personalInfo, updatePhoto } = this.props;
+    const { personalInfo, updatePhoto, removePhoto } = this.props;
 
     const allowDrop = (event) => event.preventDefault();
 
@@ -57,7 +57,7 @@ export default class PhotoInput extends React.Component {
     };
 
     return (
-      <>
+      <section id="photo-selector-wrapper">
         <label htmlFor="user-photo">
           Photo:
           <section
@@ -70,7 +70,7 @@ export default class PhotoInput extends React.Component {
               <img src={personalInfo.photo} alt="User" />
             ) : (
               <>
-                <FaCamera />
+                <FaCamera id="camera-icon" />
                 <h3>
                   Drag & drop
                   <br />
@@ -93,7 +93,14 @@ export default class PhotoInput extends React.Component {
           name="photo"
           onChange={handlePhotoChange}
         />
-      </>
+        {personalInfo.photo && (
+          <FaTimes
+            onClick={removePhoto}
+            title="Remove"
+            id="remove-photo-button"
+          />
+        )}
+      </section>
     );
   }
 }

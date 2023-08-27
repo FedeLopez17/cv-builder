@@ -13,6 +13,7 @@ export default class Form extends React.Component {
       personalInfo,
       handleChange,
       updatePhoto,
+      removePhoto,
       addEntry,
       editEntry,
       deleteEntry,
@@ -20,7 +21,7 @@ export default class Form extends React.Component {
 
     return (
       <form className="Form" id="forms-container">
-        <PhotoInput {...{ personalInfo, updatePhoto }} />
+        <PhotoInput {...{ personalInfo, updatePhoto, removePhoto }} />
 
         <label htmlFor="first-name">First name:</label>
         <input

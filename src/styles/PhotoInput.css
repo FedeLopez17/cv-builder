@@ -21,7 +21,7 @@ label[for="user-photo"] {
   border-color: red;
 }
 
-#photo-selector > svg {
+#photo-selector > #camera-icon {
   font-size: 40px;
 }
 
@@ -37,4 +37,10 @@ label[for="user-photo"] {
 
 input#user-photo {
   display: none;
+}
+
+#remove-photo-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }

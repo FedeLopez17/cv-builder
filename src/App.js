@@ -52,6 +52,7 @@ export default class App extends React.Component {
     this.toggleMode = this.toggleMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.updatePhoto = this.updatePhoto.bind(this);
+    this.removePhoto = this.removePhoto.bind(this);
     this.addEntry = this.addEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
@@ -104,6 +105,12 @@ export default class App extends React.Component {
   updatePhoto(photo) {
     this.setState((prevState) => ({
       personalInfo: { ...prevState.personalInfo, photo },
+    }));
+  }
+
+  removePhoto() {
+    this.setState((prevState) => ({
+      personalInfo: { ...prevState.personalInfo, photo: "" },
     }));
   }
 
@@ -165,6 +172,7 @@ export default class App extends React.Component {
         personalInfo={this.state.personalInfo}
         handleChange={this.handleChange}
         updatePhoto={this.updatePhoto}
+        removePhoto={this.removePhoto}
         addEntry={this.addEntry}
         editEntry={this.editEntry}
         deleteEntry={this.deleteEntry}
