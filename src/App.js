@@ -3,6 +3,7 @@ import "./styles/App.css";
 import Form from "./components/Form";
 import ModeToggle from "./components/ModeToggle";
 import Preview from "./components/Preview";
+import { example } from "./data/formData";
 
 export default class App extends React.Component {
   constructor() {
@@ -10,43 +11,7 @@ export default class App extends React.Component {
 
     this.state = {
       isEditMode: true,
-      personalInfo: {
-        photo: "",
-        firstName: "",
-        lastName: "",
-        role: "",
-        description: "",
-        location: {
-          country: "",
-          region: "",
-          city: "",
-          postalCode: "",
-          address: "",
-        },
-        phone: "",
-        email: "",
-        website: { domain: "", url: "", redirect: false },
-        linkedin: { userName: "", url: "", redirect: false },
-        github: { userName: "", url: "", redirect: false },
-        gitlab: { userName: "", url: "", redirect: false },
-        instagram: { userName: "", url: "", redirect: false },
-        twitter: { userName: "", url: "", redirect: false },
-        facebook: { userName: "", url: "", redirect: false },
-        stackOverflow: { userName: "", url: "", redirect: false },
-        behance: { userName: "", url: "", redirect: false },
-        dribbble: { userName: "", url: "", redirect: false },
-        medium: { userName: "", url: "", redirect: false },
-        youtube: { userName: "", url: "", redirect: false },
-        vimeo: { userName: "", url: "", redirect: false },
-        tiktok: { userName: "", url: "", redirect: false },
-        languages: [],
-        softSkills: [],
-        technicalSkills: [],
-        hobbies: [],
-        references: [],
-        experience: [],
-        education: [],
-      },
+      personalInfo: this.initialPersonalInfo,
     };
 
     this.toggleMode = this.toggleMode.bind(this);
@@ -56,7 +21,47 @@ export default class App extends React.Component {
     this.addEntry = this.addEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+    this.loadExample = this.loadExample.bind(this);
   }
+
+  initialPersonalInfo = {
+    photo: "",
+    firstName: "",
+    lastName: "",
+    role: "",
+    description: "",
+    location: {
+      country: "",
+      region: "",
+      city: "",
+      postalCode: "",
+      address: "",
+    },
+    phone: "",
+    email: "",
+    website: { domain: "", url: "", redirect: false },
+    linkedin: { userName: "", url: "", redirect: false },
+    github: { userName: "", url: "", redirect: false },
+    gitlab: { userName: "", url: "", redirect: false },
+    instagram: { userName: "", url: "", redirect: false },
+    twitter: { userName: "", url: "", redirect: false },
+    facebook: { userName: "", url: "", redirect: false },
+    stackOverflow: { userName: "", url: "", redirect: false },
+    behance: { userName: "", url: "", redirect: false },
+    dribbble: { userName: "", url: "", redirect: false },
+    medium: { userName: "", url: "", redirect: false },
+    youtube: { userName: "", url: "", redirect: false },
+    vimeo: { userName: "", url: "", redirect: false },
+    tiktok: { userName: "", url: "", redirect: false },
+    languages: [],
+    softSkills: [],
+    technicalSkills: [],
+    hobbies: [],
+    references: [],
+    experience: [],
+    education: [],
+  };
 
   toggleMode(event) {
     const mode = event.target.getAttribute("data-mode");
@@ -166,6 +171,14 @@ export default class App extends React.Component {
     }));
   }
 
+  resetForm() {
+    this.setState({ personalInfo: this.initialPersonalInfo });
+  }
+
+  loadExample() {
+    this.setState({ personalInfo: example });
+  }
+
   render() {
     const form = (
       <Form
@@ -176,6 +189,8 @@ export default class App extends React.Component {
         addEntry={this.addEntry}
         editEntry={this.editEntry}
         deleteEntry={this.deleteEntry}
+        resetForm={this.resetForm}
+        loadExample={this.loadExample}
       />
     );
 

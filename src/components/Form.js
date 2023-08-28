@@ -17,10 +17,18 @@ export default class Form extends React.Component {
       addEntry,
       editEntry,
       deleteEntry,
+      loadExample,
+      resetForm,
     } = this.props;
 
     return (
       <form className="Form" id="forms-container">
+        <button type="button" id="load-example-button" onClick={loadExample}>
+          Load Example
+        </button>
+        <button type="button" id="reset-form-button" onClick={resetForm}>
+          Clear
+        </button>
         <PhotoInput {...{ personalInfo, updatePhoto, removePhoto }} />
 
         <label htmlFor="first-name">First name:</label>
@@ -209,7 +217,7 @@ export default class Form extends React.Component {
                 },
                 data: {
                   showInTag: true,
-                  dataList: formData.softSkills,
+                  dataList: formData.technicalSkills,
                   required: true,
                 },
               },

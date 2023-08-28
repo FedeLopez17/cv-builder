@@ -11,6 +11,7 @@
   flex-direction: column;
 }
 
+#load-example-button,
 label[for="first-name"],
 input#first-name,
 label[for="role"],
@@ -20,6 +21,7 @@ input#email {
   grid-column: 1;
 }
 
+#reset-form-button,
 label[for="last-name"],
 input#last-name,
 label[for="phone"],
