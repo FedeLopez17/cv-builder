@@ -1,0 +1,12 @@
+#preview-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkcyan;
+}
+
+#preview-container .preview {
+  aspect-ratio: 1/1.41;
+  height: 90%;
+}

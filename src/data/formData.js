@@ -686,7 +686,8 @@ export const example = {
   firstName: "John",
   lastName: "Doe",
   role: "Back-End Developer",
-  description: "",
+  description:
+    "Seasoned Senior Back-End Engineer specializing in architecting and optimizing high-performance systems. With a wealth of experience accrued through years of dedicated work, I am committed to delivering robust and scalable solutions. \n\nMy focus on designing efficient back-end infrastructure, coupled with a deep understanding of programming languages, ensures the seamless operation of web applications. I thrive in crafting solutions that stand the test of time and excel at problem-solving in complex technical environments.",
   location: {
     country: "United States",
     region: "Washington",

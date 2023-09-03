@@ -1,0 +1,29 @@
+#layout-one {
+  height: 100%;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 5fr;
+  gap: 2%;
+  margin: 4%;
+}
+
+#layout-one > header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  grid-column: 1 / -1;
+}
+
+#layout-one > aside {
+  background-color: lightgrey;
+  grid-column: 1;
+  padding: 5%;
+}
+
+#layout-one > main {
+  grid-column: 2;
+  padding: 2.5%;
+}

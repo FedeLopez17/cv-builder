@@ -16,17 +16,29 @@ export default class BackgroundFormPreview extends React.Component {
       inputValues: {},
     };
 
-    this.toggleForm = this.toggleForm.bind(this);
+    this.openForm = this.openForm.bind(this);
+    this.initializeState = this.initializeState.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.validateAndEditEntry = this.validateAndEditEntry.bind(this);
+  }
+
+  initializeState() {
+    console.log(this.props.entry);
+    this.setState({
+      formIsActive: false,
+      inputValues: this.props.entry,
+      invalidInputs: [],
+    });
   }
 
   componentDidMount() {
-    const inputValues = this.props.inputValues;
-    this.setState({ inputValues });
+    this.initializeState();
   }
 
-  toggleForm() {
-    this.setState((prevState) => ({ formIsActive: !prevState.formIsActive }));
+  openForm() {
+    if (!this.state.formIsActive) {
+      this.setState({ formIsActive: true });
+    }
   }
 
   handleChange({ target: { name, type, value, checked } }) {
@@ -37,18 +49,50 @@ export default class BackgroundFormPreview extends React.Component {
         ...prevState.inputValues,
         [name]: isCheckbox ? checked : value,
       },
+      invalidInputs: prevState.invalidInputs.filter(
+        (inputName) => inputName !== (name === "inProgress" ? "toDate" : name)
+      ),
     }));
   }
 
+  validateAndEditEntry(event) {
+    const { editEntry } = this.props;
+
+    const invalidInputs = Object.entries(this.state.inputValues).reduce(
+      (acc, [key, value]) => {
+        if (
+          key !== "id" &&
+          ((key !== "toDate" && key !== "inProgress" && !value) ||
+            (key === "toDate" && !value && !this.state.inputValues.inProgress))
+        ) {
+          acc.push(key);
+        }
+        return acc;
+      },
+      []
+    );
+
+    console.log(invalidInputs);
+
+    if (invalidInputs.length) {
+      this.setState((prevState) => ({
+        invalidInputs: [...prevState.invalidInputs, ...invalidInputs],
+      }));
+
+      console.log("Invalid");
+      console.log(invalidInputs.length);
+      return;
+    }
+
+    editEntry(event);
+    this.initializeState();
+  }
+
   render() {
-    const {
-      entry,
-      wrapper,
-      inputOneName,
-      inputTwoName,
-      deleteEntry,
-      editEntry,
-    } = this.props;
+    console.log(this.props);
+
+    const { entry, wrapper, inputOneName, inputTwoName, deleteEntry } =
+      this.props;
 
     const fromDate = Helpers.monthInputSupported()
       ? Helpers.formatMonthInputDate({
@@ -75,13 +119,14 @@ export default class BackgroundFormPreview extends React.Component {
             ...this.props,
             handleChange: this.handleChange,
             inputValues: this.state.inputValues,
+            invalidInputs: this.state.invalidInputs,
           }}
         />
 
         <button
           type="button"
           className="cancel-editing-button"
-          onClick={this.toggleForm}
+          onClick={this.initializeState}
         >
           Cancel
         </button>
@@ -96,7 +141,7 @@ export default class BackgroundFormPreview extends React.Component {
             id: entry.id,
           })}
           className="apply-editing-button"
-          onClick={editEntry}
+          onClick={this.validateAndEditEntry}
         >
           Apply
         </button>
@@ -122,7 +167,7 @@ export default class BackgroundFormPreview extends React.Component {
           title="Edit"
           data-wrapper={wrapper}
           data-id={entry.id}
-          onClick={this.toggleForm}
+          onClick={this.openForm}
         >
           <FaEdit style={{ pointerEvents: "none" }} />
         </button>
