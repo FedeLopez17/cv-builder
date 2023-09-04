@@ -120,6 +120,24 @@ export default class LayoutOne extends React.Component {
               ))}
             </section>
           )}
+
+          {personalInfo.technicalSkills.length && (
+            <section>
+              <h3>Technical Skills:</h3>
+              {personalInfo.technicalSkills.map((skillsObj, index) => (
+                <p key={index}>{skillsObj.skill}</p>
+              ))}
+            </section>
+          )}
+
+          {personalInfo.softSkills.length && (
+            <section>
+              <h3>Soft Skills:</h3>
+              {personalInfo.softSkills.map((skillsObj, index) => (
+                <p key={index}>{skillsObj.skill}</p>
+              ))}
+            </section>
+          )}
         </aside>
         <main>
           <section id="professional-profile">
