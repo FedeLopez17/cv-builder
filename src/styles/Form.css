@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: column;
+  padding-bottom: 100px;
 }
 
 #forms-container > * {
@@ -35,7 +36,7 @@ textarea#description,
 .location-selector,
 #online-presence-inputs,
 .tag-selector,
-.background-form {
+.card-form {
   grid-column: 1/-1;
 }
 

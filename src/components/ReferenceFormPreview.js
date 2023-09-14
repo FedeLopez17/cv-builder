@@ -1,14 +1,8 @@
 import React from "react";
-import Helpers from "../Helpers";
 import { FaEdit, FaTimes } from "react-icons/fa";
-import BackgroundFormInputs from "./BackgroundFormInputs";
+import ReferenceFormInputs from "./ReferenceFormInputs";
 
-const getSplitDate = (date) => {
-  const [year, month] = date.split("-");
-  return { year, month };
-};
-
-export default class BackgroundFormPreview extends React.Component {
+export default class ReferenceFormPreview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +17,6 @@ export default class BackgroundFormPreview extends React.Component {
   }
 
   initializeState() {
-    console.log(this.props.entry);
     this.setState({
       formIsActive: false,
       inputValues: this.props.entry,
@@ -41,16 +34,14 @@ export default class BackgroundFormPreview extends React.Component {
     }
   }
 
-  handleChange({ target: { name, type, value, checked } }) {
-    const isCheckbox = type === "checkbox";
-
+  handleChange({ target: { name, value } }) {
     this.setState((prevState) => ({
       inputValues: {
         ...prevState.inputValues,
-        [name]: isCheckbox ? checked : value,
+        [name]: value,
       },
       invalidInputs: prevState.invalidInputs.filter(
-        (inputName) => inputName !== (name === "inProgress" ? "toDate" : name)
+        (inputName) => inputName !== name
       ),
     }));
   }
@@ -60,12 +51,7 @@ export default class BackgroundFormPreview extends React.Component {
 
     const invalidInputs = Object.entries(this.state.inputValues).reduce(
       (acc, [key, value]) => {
-        if (
-          !optionalFields.includes(key) &&
-          key !== "id" &&
-          ((key !== "toDate" && key !== "inProgress" && !value) ||
-            (key === "toDate" && !value && !this.state.inputValues.inProgress))
-        ) {
+        if (key !== "id" && !optionalFields.includes(key) && !value) {
           acc.push(key);
         }
         return acc;
@@ -86,30 +72,11 @@ export default class BackgroundFormPreview extends React.Component {
   }
 
   render() {
-    const { entry, wrapper, inputOneName, inputTwoName, deleteEntry } =
-      this.props;
-
-    const fromDate = Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...getSplitDate(entry.fromDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.fromDate;
-
-    const toDate = entry.inProgress
-      ? "Present"
-      : Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...getSplitDate(entry.toDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.toDate;
+    const { entry, deleteEntry } = this.props;
 
     const editingForm = (
       <section className="form edit-entry-form">
-        <BackgroundFormInputs
+        <ReferenceFormInputs
           {...{
             ...this.props,
             handleChange: this.handleChange,
@@ -129,7 +96,7 @@ export default class BackgroundFormPreview extends React.Component {
         <button
           type="button"
           title="Apply"
-          data-wrapper={wrapper}
+          data-wrapper="references"
           data-id={entry.id}
           data-entry={JSON.stringify({
             ...this.state.inputValues,
@@ -144,12 +111,12 @@ export default class BackgroundFormPreview extends React.Component {
     );
 
     return (
-      <section className={`preview ${wrapper}-preview`} data-id={entry.id}>
+      <section className="preview reference-preview" data-id={entry.id}>
         <button
           className="edit-entry-button"
           type="button"
           title="Edit"
-          data-wrapper={wrapper}
+          data-wrapper="references"
           data-id={entry.id}
           onClick={this.openForm}
         >
@@ -160,26 +127,18 @@ export default class BackgroundFormPreview extends React.Component {
           className="delete-entry-button"
           type="button"
           title="Delete"
-          data-wrapper={wrapper}
+          data-wrapper="references"
           data-id={entry.id}
           onClick={deleteEntry}
         >
           <FaTimes style={{ pointerEvents: "none" }} />
         </button>
 
-        <p className={`${wrapper}-preview-info ${inputOneName}`}>
-          {entry[inputOneName]}
+        <p className="reference-preview-full-name">
+          {entry.name} {entry.lastName}
         </p>
-
-        <p className={`${wrapper}-preview-info ${inputTwoName}`}>
-          {entry[inputTwoName]}
-        </p>
-
-        <p className={`${wrapper}-preview-info date`}>
-          <span className="from">{fromDate}</span>
-          <span className="separator">-</span>
-          <span className="to">{toDate}</span>
-        </p>
+        <p className="reference-preview-role">{entry.role}</p>
+        <p className="reference-preview-company">{entry.company}</p>
 
         {this.state.formIsActive && editingForm}
       </section>

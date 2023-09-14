@@ -135,14 +135,16 @@ export default class TagSelector extends React.Component {
       >
         <header className="tag-selector-header">
           <section className="title">{title}</section>
-          <button
-            type="button"
-            className="add-tag-button"
-            onClick={this.openForm}
-            title="Add"
-          >
-            <FaPlusCircle />
-          </button>
+          {!this.state.formIsActive && (
+            <button
+              type="button"
+              className="add-tag-button"
+              onClick={this.openForm}
+              title="Add"
+            >
+              <FaPlusCircle />
+            </button>
+          )}
         </header>
         <section className="tags-container">{tagsArr}</section>
         {this.state.formIsActive && form}

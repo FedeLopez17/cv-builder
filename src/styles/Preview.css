@@ -10,3 +10,7 @@
   aspect-ratio: 1/1.41;
   height: 90%;
 }
+
+#preview-container .description {
+  white-space: break-spaces;
+}

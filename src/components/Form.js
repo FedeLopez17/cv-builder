@@ -3,9 +3,9 @@ import "../styles/Form.css";
 import OnlinePresenceInputs from "./OnlinePresenceInputs";
 import TagSelector from "./TagSelector";
 import formData from "../data/formData";
-import BackgroundForm from "./BackgroundForm";
 import LocationSelector from "./LocationSelector";
 import PhotoInput from "./PhotoInput";
+import CardForm from "./CardForm";
 
 export default class Form extends React.Component {
   render() {
@@ -70,16 +70,6 @@ export default class Form extends React.Component {
           ))}
         </datalist>
 
-        <label htmlFor="description">Description:</label>
-        <textarea
-          placeholder="Junior Back-End Developer passionate about building efficient and scalable web applications.
-                  With a strong foundation in programming languages and a keen eye for detail,I excel in writing clean and maintainable code."
-          id="description"
-          name="description"
-          value={personalInfo.description}
-          onChange={handleChange}
-        ></textarea>
-
         <label htmlFor="email">E-Mail:</label>
         <input
           type="email"
@@ -89,6 +79,16 @@ export default class Form extends React.Component {
           value={personalInfo.email}
           onChange={handleChange}
         />
+
+        <label htmlFor="description">Description:</label>
+        <textarea
+          placeholder="Junior Back-End Developer passionate about building efficient and scalable web applications.
+                  With a strong foundation in programming languages and a keen eye for detail,I excel in writing clean and maintainable code."
+          id="description"
+          name="description"
+          value={personalInfo.description}
+          onChange={handleChange}
+        ></textarea>
 
         <label htmlFor="phone">Phone number:</label>
         <input
@@ -227,103 +227,27 @@ export default class Form extends React.Component {
           {...{ addEntry, deleteEntry }}
         />
 
-        <TagSelector
-          title="Professional References"
+        <CardForm
           wrapper="references"
-          inputsData={[
-            {
-              labelText: "Name:",
-              input: {
-                attributes: {
-                  type: "text",
-                  autoCapitalize: "words",
-                  placeholder: "Jason",
-                  name: "name",
-                  id: "reference-name-input",
-                },
-                data: { showInTag: true, required: true },
-              },
-            },
-            {
-              labelText: "Last Name:",
-              input: {
-                attributes: {
-                  type: "text",
-                  autoCapitalize: "words",
-                  placeholder: "Smith",
-                  name: "lastName",
-                  id: "reference-last-name-input",
-                },
-                data: { showInTag: true, required: true },
-              },
-            },
-            {
-              labelText: "Role:",
-              input: {
-                attributes: {
-                  type: "text",
-                  placeholder: "CEO",
-                  list: "roles-data-list",
-                  name: "role",
-                  id: "reference-role-input",
-                },
-                data: {
-                  showInTag: false,
-                  dataList: formData.roles,
-                  required: true,
-                },
-              },
-            },
-            {
-              labelText: "Company:",
-              input: {
-                attributes: {
-                  type: "text",
-                  placeholder: "Google",
-                  name: "company",
-                  id: "reference-company-input",
-                },
-                data: { showInTag: true, required: true },
-              },
-            },
-            {
-              labelText: "Phone:",
-              input: {
-                attributes: {
-                  type: "tel",
-                  placeholder: "1234567",
-                  name: "phone",
-                  id: "reference-phone-input",
-                },
-                data: { showInTag: false, required: false },
-              },
-            },
-            {
-              labelText: "Email:",
-              input: {
-                attributes: {
-                  type: "email",
-                  placeholder: "reference@example.com",
-                  name: "email",
-                  id: "reference-email-input",
-                },
-                data: { showInTag: false, required: true },
-              },
-            },
-          ]}
           prevEntries={personalInfo.references}
-          {...{ addEntry, deleteEntry }}
+          {...{ addEntry, editEntry, deleteEntry }}
         />
 
-        <BackgroundForm
-          isEducation={true}
+        <CardForm
+          wrapper="education"
           prevEntries={personalInfo.education}
           {...{ addEntry, editEntry, deleteEntry }}
         />
 
-        <BackgroundForm
-          isEducation={false}
+        <CardForm
+          wrapper="experience"
           prevEntries={personalInfo.experience}
+          {...{ addEntry, editEntry, deleteEntry }}
+        />
+
+        <CardForm
+          wrapper="projects"
+          prevEntries={personalInfo.projects}
           {...{ addEntry, editEntry, deleteEntry }}
         />
       </form>

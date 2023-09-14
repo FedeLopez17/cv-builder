@@ -1,5 +1,3 @@
-import ThisGuyDoesNotExist from "../assets/this-person-does-not-exist-guy.jpeg";
-
 const data = {
   languages: {
     languages: [
@@ -678,93 +676,6 @@ const data = {
     "Video Editor",
     "Web Designer",
     "Web Developer",
-  ],
-};
-
-export const example = {
-  photo: ThisGuyDoesNotExist,
-  firstName: "John",
-  lastName: "Doe",
-  role: "Back-End Developer",
-  description:
-    "Seasoned Senior Back-End Engineer specializing in architecting and optimizing high-performance systems. With a wealth of experience accrued through years of dedicated work, I am committed to delivering robust and scalable solutions. \n\nMy focus on designing efficient back-end infrastructure, coupled with a deep understanding of programming languages, ensures the seamless operation of web applications. I thrive in crafting solutions that stand the test of time and excel at problem-solving in complex technical environments.",
-  location: {
-    country: "United States",
-    region: "Washington",
-    city: "Seattle",
-    postalCode: "",
-    address: "",
-  },
-  phone: "(206) 555-1234",
-  email: "john-doe@example.com",
-  website: { domain: "john-doe.dev", url: "", redirect: false },
-  linkedin: { userName: "John Doe", url: "", redirect: false },
-  github: { userName: "", url: "", redirect: false },
-  gitlab: { userName: "", url: "", redirect: false },
-  instagram: { userName: "", url: "", redirect: false },
-  twitter: { userName: "", url: "", redirect: false },
-  facebook: { userName: "", url: "", redirect: false },
-  stackOverflow: { userName: "", url: "", redirect: false },
-  behance: { userName: "", url: "", redirect: false },
-  dribbble: { userName: "", url: "", redirect: false },
-  medium: { userName: "", url: "", redirect: false },
-  youtube: { userName: "", url: "", redirect: false },
-  vimeo: { userName: "", url: "", redirect: false },
-  tiktok: { userName: "", url: "", redirect: false },
-  languages: [
-    { language: "English", level: "Proficient", id: 0 },
-    { language: "Spanish", level: "Fluent", id: 1 },
-  ],
-  softSkills: [
-    { skill: "Adaptability", id: 0 },
-    { skill: "Attention to detail", id: 1 },
-    { skill: "Communication", id: 2 },
-    { skill: "Continuous learning", id: 3 },
-  ],
-  technicalSkills: [
-    { skill: "JavaScript", id: 0 },
-    { skill: "TypeScript", id: 1 },
-    { skill: "Node.js", id: 2 },
-    { skill: "Express.js", id: 3 },
-    { skill: "SQL", id: 4 },
-    { skill: "Git", id: 5 },
-    { skill: "Linux", id: 6 },
-    { skill: "Amazon Web Services", id: 7 },
-    { skill: "Docker", id: 8 },
-    { skill: "Kubernetes", id: 9 },
-  ],
-  hobbies: [
-    { hobby: "Hiking", id: 0 },
-    { hobby: "Reading", id: 1 },
-  ],
-  references: [],
-  experience: [
-    {
-      company: "DoorDash",
-      fromDate: "2021-04",
-      id: 0,
-      inProgress: false,
-      role: "Junior Back-End Developer",
-      toDate: "2022-05",
-    },
-    {
-      company: "Amazon",
-      fromDate: "2022-03",
-      id: 1,
-      inProgress: true,
-      role: "Back-End Developer",
-      toDate: "",
-    },
-  ],
-  education: [
-    {
-      degree: "Bachelor of Science in Computer Engineering",
-      fromDate: "2020-03",
-      id: 0,
-      inProgress: true,
-      institution: "University of Washington",
-      toDate: "",
-    },
   ],
 };
 

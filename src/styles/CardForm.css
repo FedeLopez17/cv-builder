@@ -1,14 +1,14 @@
-.background-form-header {
+.card-form-header {
   display: flex;
 }
 
-.add-background-entry-button {
+.add-card-entry-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.background-container {
+.card-container {
   display: flex;
   flex-direction: column;
   gap: 10px;

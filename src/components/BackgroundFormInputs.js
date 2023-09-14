@@ -12,8 +12,9 @@ export default class BackgroundFormInputs extends React.Component {
       wrapper,
       inputOneName,
       inputTwoName,
-      isEducation,
     } = this.props;
+
+    const isEducation = wrapper === "education";
 
     const placeHolderOne = isEducation
       ? "Bachelor of Science in Computer Science"
@@ -72,6 +73,16 @@ export default class BackgroundFormInputs extends React.Component {
           onChange={handleChange}
         ></input>
         {invalidInputs.includes(inputTwoName) && <InvalidInputMessage />}
+
+        <label htmlFor={`${wrapper}-description-input`}>Description:</label>
+        <textarea
+          type="textarea"
+          id={`${wrapper}-description-input`}
+          placeholder="PLACEHOLDER"
+          name="description"
+          value={inputValues.description}
+          onChange={handleChange}
+        />
 
         <label htmlFor={`${wrapper}-from-date-input`}>From:</label>
         <input

@@ -3,7 +3,7 @@ import "./styles/App.css";
 import Form from "./components/Form";
 import ModeToggle from "./components/ModeToggle";
 import Preview from "./components/Preview";
-import { example } from "./data/formData";
+import example from "./data/formExample";
 
 export default class App extends React.Component {
   constructor() {
@@ -61,6 +61,7 @@ export default class App extends React.Component {
     references: [],
     experience: [],
     education: [],
+    projects: [],
   };
 
   toggleMode(event) {
@@ -123,20 +124,25 @@ export default class App extends React.Component {
     const wrapper = event.target.getAttribute("data-wrapper");
     const entry = JSON.parse(event.target.getAttribute("data-entry"));
 
-    this.setState((prevState) => {
-      const entries = prevState.personalInfo[wrapper];
-      const newEntry = {
-        ...entry,
-        id: entries.length ? entries[entries.length - 1].id + 1 : 0,
-      };
+    this.setState(
+      (prevState) => {
+        const entries = prevState.personalInfo[wrapper];
+        const newEntry = {
+          ...entry,
+          id: entries.length ? entries[entries.length - 1].id + 1 : 0,
+        };
 
-      return {
-        personalInfo: {
-          ...prevState.personalInfo,
-          [wrapper]: [...prevState.personalInfo[wrapper], newEntry],
-        },
-      };
-    });
+        return {
+          personalInfo: {
+            ...prevState.personalInfo,
+            [wrapper]: [...prevState.personalInfo[wrapper], newEntry],
+          },
+        };
+      },
+      () => {
+        console.log(this.state.personalInfo);
+      }
+    );
   }
 
   editEntry(event) {
