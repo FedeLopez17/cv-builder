@@ -2,17 +2,22 @@ label[for="user-photo"] {
   width: fit-content;
 }
 
+#photo-selector-wrapper {
+  position: relative;
+}
+
 #photo-selector {
   background-color: lightgrey;
   border: 2px dashed black;
-  width: 200px;
-  aspect-ratio: 2/2;
+  width: 250px;
+  aspect-ratio: 12/9;
   cursor: pointer;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 5px;
   gap: 10px;
 }
 
@@ -43,4 +48,7 @@ input#user-photo {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: 255px;
 }

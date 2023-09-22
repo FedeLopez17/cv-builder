@@ -1,10 +1,9 @@
 import React from "react";
-import Helpers from "../Helpers";
-import TagSelectorTag from "./TagSelectorTag";
+import Helpers from "../../../Helpers";
 import TagSelectorInput from "./TagSelectorInput";
+import Tag from "./Tag";
 import { FaPlusCircle } from "react-icons/fa";
-
-import "../styles/TagSelector.css";
+import "../../../styles/TagSelector.css";
 
 export default class TagSelector extends React.Component {
   constructor(props) {
@@ -21,23 +20,22 @@ export default class TagSelector extends React.Component {
     this.validateAndAddEntry = this.validateAndAddEntry.bind(this);
   }
 
-  initializeState() {
+  initializeState(keepFormIsActiveState) {
     const { inputsData } = this.props;
 
-    const initialInputValues = {};
-    inputsData.forEach((data) => {
-      initialInputValues[data.input.attributes.name] = "";
-    });
+    const initialInputValues = Object.fromEntries(
+      inputsData.map((data) => [data.input.attributes.name, ""])
+    );
 
-    this.setState({
-      formIsActive: false,
+    this.setState((prevState) => ({
+      formIsActive: keepFormIsActiveState ? prevState.formIsActive : false,
       inputValues: initialInputValues,
       invalidInputs: [],
-    });
+    }));
   }
 
   componentDidMount() {
-    this.initializeState();
+    this.initializeState(false);
   }
 
   openForm() {
@@ -75,17 +73,14 @@ export default class TagSelector extends React.Component {
     }
 
     addEntry(event);
-    this.initializeState();
+    this.initializeState(true);
   }
 
   render() {
     const { title, wrapper, prevEntries, deleteEntry, inputsData } = this.props;
 
     const tagsArr = prevEntries.map((entry) => (
-      <TagSelectorTag
-        {...{ entry, inputsData, wrapper, deleteEntry }}
-        key={entry.id}
-      />
+      <Tag {...{ entry, inputsData, wrapper, deleteEntry }} key={entry.id} />
     ));
 
     const inputsArr = inputsData.map((inputData, index) => {
@@ -105,26 +100,27 @@ export default class TagSelector extends React.Component {
     });
 
     const form = (
-      <section className="tags-form">
+      <section className="tag-form">
         {inputsArr}
 
-        <button
-          type="button"
-          className="cancel-entry-button"
-          onClick={this.initializeState}
-        >
-          Cancel
-        </button>
-
-        <button
-          type="button"
-          data-wrapper={wrapper}
-          data-entry={JSON.stringify(this.state.inputValues)}
-          className="add-entry-button"
-          onClick={this.validateAndAddEntry}
-        >
-          Add Entry
-        </button>
+        <section className="tag-form-buttons-wrapper">
+          <button
+            type="button"
+            className="cancel-entry-button"
+            onClick={() => this.initializeState(false)}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            data-wrapper={wrapper}
+            data-entry={JSON.stringify(this.state.inputValues)}
+            className="add-entry-button"
+            onClick={this.validateAndAddEntry}
+          >
+            Add Entry
+          </button>
+        </section>
       </section>
     );
 

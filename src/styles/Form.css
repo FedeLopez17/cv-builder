@@ -1,45 +1,45 @@
-#forms-container {
-  flex: 1;
-  background-color: skyblue;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: column;
-  padding-bottom: 100px;
-}
-
-#forms-container > * {
+.form-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-#load-example-button,
-label[for="first-name"],
-input#first-name,
-label[for="role"],
-input#role,
-label[for="email"],
-input#email {
-  grid-column: 1;
+.form-section > header > .form-related-buttons-wrapper {
+  display: flex;
+  gap: 15px;
 }
 
-#reset-form-button,
-label[for="last-name"],
-input#last-name,
-label[for="phone"],
-input#phone {
-  grid-column: 2;
+#cv-form {
+  background-color: skyblue;
+  min-height: 100vh;
+  width: min(100%, 1000px);
+  box-sizing: border-box;
+  padding: 25px;
 }
 
-#photo-selector-wrapper,
-label[for="description"],
-textarea#description,
-.location-selector,
-#online-presence-inputs,
-.tag-selector,
-.card-form {
-  grid-column: 1/-1;
+#cv-form > * {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+input {
+  height: 25px;
 }
 
 input.invalid {
   border: solid 2px red;
+}
+
+textarea#description {
+  height: 150px;
+  resize: vertical;
+}
+
+.input-wrapper {
+  gap: 5px;
+}
+
+datalist {
+  position: absolute;
 }

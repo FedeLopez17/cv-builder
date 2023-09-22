@@ -1,0 +1,8 @@
+.location-selector {
+  gap: 20px;
+}
+
+.location-selector-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}

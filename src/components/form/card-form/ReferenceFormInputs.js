@@ -1,6 +1,6 @@
 import React from "react";
-import InvalidInputMessage from "./InvalidInputMessage";
-import formData from "../data/formData";
+import InvalidInputMessage from "../InvalidInputMessage";
+import formData from "../../../data/formData";
 
 export default class ReferenceFormInputs extends React.Component {
   render() {

@@ -1,13 +1,13 @@
 import React from "react";
-import BackgroundFormPreview from "./BackgroundFormPreview";
+import BackgroundPreview from "./BackgroundPreview";
 import BackgroundFormInputs from "./BackgroundFormInputs";
-import ProjectFormPreview from "./ProjectFormPreview";
+import ProjectPreview from "./ProjectPreview";
 import ProjectFormInputs from "./ProjectFormInputs";
 import { FaPlusCircle } from "react-icons/fa";
-import Helpers from "../Helpers";
-import "../styles/CardForm.css";
-import ReferenceFormPreview from "./ReferenceFormPreview";
+import ReferencePreview from "./ReferencePreview";
 import ReferenceFormInputs from "./ReferenceFormInputs";
+import Helpers from "../../../Helpers";
+import "../../../styles/CardForm.css";
 
 const ALLOWED_WRAPPERS = ["education", "experience", "projects", "references"];
 
@@ -172,7 +172,7 @@ export default class CardForm extends React.Component {
     const prevEntriesArr = prevEntries.map((entry) => {
       if (wrapper === "education" || wrapper === "experience") {
         return (
-          <BackgroundFormPreview
+          <BackgroundPreview
             {...{
               ...childrenPropsInCommon,
               entry,
@@ -188,12 +188,13 @@ export default class CardForm extends React.Component {
         );
       } else if (wrapper === "projects") {
         return (
-          <ProjectFormPreview
+          <ProjectPreview
             {...{
               childrenPropsInCommon,
               entry,
               editEntry,
               deleteEntry,
+              wrapper,
               optionalFields: OPTIONAL_FIELDS.projects,
               key: entry.id,
             }}
@@ -201,12 +202,13 @@ export default class CardForm extends React.Component {
         );
       } else {
         return (
-          <ReferenceFormPreview
+          <ReferencePreview
             {...{
               childrenPropsInCommon,
               entry,
               editEntry,
               deleteEntry,
+              wrapper,
               optionalFields: OPTIONAL_FIELDS.references,
               key: entry.id,
             }}
@@ -233,23 +235,24 @@ export default class CardForm extends React.Component {
             <ReferenceFormInputs {...childrenPropsInCommon} />
           ))}
 
-        <button
-          type="button"
-          className="cancel-entry-button"
-          onClick={this.initializeState}
-        >
-          Cancel
-        </button>
-
-        <button
-          type="button"
-          data-wrapper={wrapper}
-          data-entry={JSON.stringify(this.state.inputValues)}
-          className="add-entry-button"
-          onClick={this.validateAndAddEntry}
-        >
-          Add Entry
-        </button>
+        <section className="card-form-buttons-wrapper">
+          <button
+            type="button"
+            className="cancel-entry-button"
+            onClick={this.initializeState}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            data-wrapper={wrapper}
+            data-entry={JSON.stringify(this.state.inputValues)}
+            className="add-entry-button"
+            onClick={this.validateAndAddEntry}
+          >
+            Add Entry
+          </button>
+        </section>
       </section>
     );
 

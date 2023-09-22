@@ -50,7 +50,7 @@ const data = {
     {
       wrapper: "linkedin",
       name: "userName",
-      legend: "LinkedIn",
+      title: "LinkedIn",
       userLabel: "User",
       userPlaceHolder: "John Doe",
       urlPlaceHolder: "https://www.linkedin.com/in/john-doe-123/",
@@ -58,7 +58,7 @@ const data = {
     {
       wrapper: "github",
       name: "userName",
-      legend: "GitHub",
+      title: "GitHub",
       userLabel: "User",
       userPlaceHolder: "JohnDoe71",
       urlPlaceHolder: "https://github.com/JohnDoe71",
@@ -66,7 +66,7 @@ const data = {
     {
       wrapper: "gitlab",
       name: "userName",
-      legend: "GitLab",
+      title: "GitLab",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -74,7 +74,7 @@ const data = {
     {
       wrapper: "instagram",
       name: "userName",
-      legend: "Instagram",
+      title: "Instagram",
       userLabel: "User",
       userPlaceHolder: "johndoe71",
       urlPlaceHolder: "https://www.instagram.com/johndoe71/",
@@ -82,7 +82,7 @@ const data = {
     {
       wrapper: "twitter",
       name: "userName",
-      legend: "Twitter",
+      title: "Twitter",
       userLabel: "User",
       userPlaceHolder: "johndoe71",
       urlPlaceHolder: "https://twitter.com/johndoe71",
@@ -90,7 +90,7 @@ const data = {
     {
       wrapper: "facebook",
       name: "userName",
-      legend: "Facebook",
+      title: "Facebook",
       userLabel: "User",
       userPlaceHolder: "John Doe",
       urlPlaceHolder: "https://www.facebook.com/JohnDoe71/",
@@ -98,7 +98,7 @@ const data = {
     {
       wrapper: "stackOverflow",
       name: "userName",
-      legend: "Stack Overflow",
+      title: "Stack Overflow",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -106,7 +106,7 @@ const data = {
     {
       wrapper: "behance",
       name: "userName",
-      legend: "Behance",
+      title: "Behance",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -114,7 +114,7 @@ const data = {
     {
       wrapper: "dribbble",
       name: "userName",
-      legend: "Dribbble",
+      title: "Dribbble",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -122,7 +122,7 @@ const data = {
     {
       wrapper: "medium",
       name: "userName",
-      legend: "Medium",
+      title: "Medium",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -130,7 +130,7 @@ const data = {
     {
       wrapper: "youtube",
       name: "userName",
-      legend: "YouTube",
+      title: "YouTube",
       userLabel: "Channel",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -138,7 +138,7 @@ const data = {
     {
       wrapper: "vimeo",
       name: "userName",
-      legend: "Vimeo",
+      title: "Vimeo",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",
@@ -146,7 +146,7 @@ const data = {
     {
       wrapper: "tiktok",
       name: "userName",
-      legend: "TikTok",
+      title: "TikTok",
       userLabel: "User",
       userPlaceHolder: "",
       urlPlaceHolder: "",

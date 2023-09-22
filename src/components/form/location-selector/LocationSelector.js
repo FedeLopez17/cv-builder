@@ -1,7 +1,7 @@
 import React from "react";
-import countriesData from "../data/countriesData.json";
-import "../styles/LocationSelector.css";
+import countriesData from "../../../data/countriesData.json";
 import LocationSelectorInput from "./LocationSelectorInput";
+import "../../../styles/LocationSelector.css";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 

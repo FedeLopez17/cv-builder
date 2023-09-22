@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/InvalidInputMessage.css";
+import "../../styles/InvalidInputMessage.css";
 
 export default class InvalidInputMessage extends React.Component {
   render() {

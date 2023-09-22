@@ -1,9 +1,8 @@
 import React from "react";
-import "./styles/App.css";
-import Form from "./components/Form";
-import ModeToggle from "./components/ModeToggle";
-import Preview from "./components/Preview";
+import Form from "./components/form/Form";
+import Preview from "./components/preview/Preview";
 import example from "./data/formExample";
+import "./styles/App.css";
 
 export default class App extends React.Component {
   constructor() {
@@ -167,6 +166,9 @@ export default class App extends React.Component {
     const wrapper = event.target.getAttribute("data-wrapper");
     const deletionId = event.target.getAttribute("data-id");
 
+    console.log(wrapper);
+    console.log(deletionId);
+
     this.setState((prevState) => ({
       personalInfo: {
         ...prevState.personalInfo,
@@ -197,19 +199,17 @@ export default class App extends React.Component {
         deleteEntry={this.deleteEntry}
         resetForm={this.resetForm}
         loadExample={this.loadExample}
+        toggleMode={this.toggleMode}
       />
     );
 
-    const preview = <Preview personalInfo={this.state.personalInfo} />;
-
-    return (
-      <div className="app">
-        <ModeToggle
-          handleClick={this.toggleMode}
-          isEditMode={this.state.isEditMode}
-        />
-        {this.state.isEditMode ? form : preview}
-      </div>
+    const preview = (
+      <Preview
+        personalInfo={this.state.personalInfo}
+        toggleMode={this.toggleMode}
+      />
     );
+
+    return <div className="app">{this.state.isEditMode ? form : preview}</div>;
   }
 }

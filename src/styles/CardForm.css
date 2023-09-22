@@ -1,5 +1,9 @@
 .card-form-header {
   display: flex;
+  flex-direction: row;
+  background-color: red;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .add-card-entry-button {
@@ -10,6 +14,64 @@
 
 .card-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
+}
+
+.card-container > * {
+  background-color: ghostwhite;
+  width: 200px;
+  flex-shrink: 0;
+  min-height: 100px;
+  box-sizing: border-box;
+  padding: 8px 8px 10px 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-buttons-wrapper {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  margin-bottom: 0px;
+}
+
+.card-form .add-entry-form {
+  background-color: cadetblue;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 10px;
+}
+
+.card-form .add-entry-form > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-form .add-entry-form > *.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-form .add-entry-form > *.checkbox input {
+  width: 15px;
+}
+
+.card-form .add-entry-form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.card-form input[type="month"] {
+  width: fit-content;
+}
+
+.card-form .card-form-buttons-wrapper {
+  flex-direction: row;
+  align-self: flex-end;
+  gap: 5px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import InvalidInputMessage from "./InvalidInputMessage";
+import InvalidInputMessage from "../InvalidInputMessage";
 
 export default class TagSelectorInput extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class TagSelectorInput extends React.Component {
     } = inputData;
 
     return (
-      <>
+      <section className="input-wrapper">
         {labelText && <label htmlFor={attributes.id}>{labelText}</label>}
         <input
           {...attributes}
@@ -28,7 +28,7 @@ export default class TagSelectorInput extends React.Component {
             ))}
           </datalist>
         )}
-      </>
+      </section>
     );
   }
 }

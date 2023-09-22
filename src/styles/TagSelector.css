@@ -1,6 +1,9 @@
 .tag-selector-header {
   display: flex;
   flex-direction: row;
+  background-color: red;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .add-tag-button,
@@ -24,4 +27,23 @@
   min-width: 20px;
   padding: 6px;
   border-radius: 15px;
+}
+
+.tag-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  gap: 5px;
+}
+
+.tag-form > .input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-form-buttons-wrapper {
+  margin-top: 5px;
+  display: flex;
+  align-self: flex-end;
+  gap: 5px;
 }

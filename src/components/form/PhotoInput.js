@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/PhotoInput.css";
-import { FaCamera, FaTimes } from "react-icons/fa";
+import "../../styles/PhotoInput.css";
+import { FaCamera, FaTrashAlt } from "react-icons/fa";
 import InvalidInputMessage from "./InvalidInputMessage";
 
 export default class PhotoInput extends React.Component {
@@ -57,7 +57,7 @@ export default class PhotoInput extends React.Component {
     };
 
     return (
-      <section id="photo-selector-wrapper">
+      <section id="photo-selector-wrapper" className="input-wrapper">
         <label htmlFor="user-photo">
           Photo:
           <section
@@ -94,7 +94,7 @@ export default class PhotoInput extends React.Component {
           onChange={handlePhotoChange}
         />
         {personalInfo.photo && (
-          <FaTimes
+          <FaTrashAlt
             onClick={removePhoto}
             title="Remove"
             id="remove-photo-button"

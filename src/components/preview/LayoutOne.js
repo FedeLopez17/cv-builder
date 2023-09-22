@@ -19,7 +19,7 @@ import {
   FaVimeo,
   FaYoutube,
 } from "react-icons/fa";
-import "../styles/LayoutOne.css";
+import "../../styles/LayoutOne.css";
 
 export default class LayoutOne extends React.Component {
   render() {

@@ -1,0 +1,33 @@
+#online-presence-inputs > label {
+  margin-bottom: 10px;
+}
+
+#online-presence-inputs > details[open] {
+  margin-bottom: 15px;
+}
+
+#online-presence-inputs summary {
+  background-color: beige;
+  margin-bottom: 5px;
+}
+
+.social-media-input-wrappers-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-media-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.social-media-input-wrapper.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.social-media-input-wrapper.checkbox input {
+  width: 15px;
+}

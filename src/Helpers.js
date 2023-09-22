@@ -26,6 +26,11 @@ export default class Helpers {
     return MONTH_NAMES[monthIndex];
   }
 
+  static getSplitDate(date) {
+    const [year, month] = date.split("-");
+    return { year, month };
+  }
+
   static formatMonthInputDate({ month, year, monthFirst, twoDigitsYear }) {
     if (twoDigitsYear) year = year.slice(2);
     const firstField = monthFirst ? month : year;

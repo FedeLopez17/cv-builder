@@ -1,14 +1,7 @@
 import React from "react";
-import Helpers from "../Helpers";
 import { FaEdit, FaTimes } from "react-icons/fa";
-import BackgroundFormInputs from "./BackgroundFormInputs";
 
-const getSplitDate = (date) => {
-  const [year, month] = date.split("-");
-  return { year, month };
-};
-
-export default class BackgroundFormPreview extends React.Component {
+class BaseCardPreview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,10 +13,10 @@ export default class BackgroundFormPreview extends React.Component {
     this.initializeState = this.initializeState.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateAndEditEntry = this.validateAndEditEntry.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   initializeState() {
-    console.log(this.props.entry);
     this.setState({
       formIsActive: false,
       inputValues: this.props.entry,
@@ -63,8 +56,9 @@ export default class BackgroundFormPreview extends React.Component {
         if (
           !optionalFields.includes(key) &&
           key !== "id" &&
-          ((key !== "toDate" && key !== "inProgress" && !value) ||
-            (key === "toDate" && !value && !this.state.inputValues.inProgress))
+          !value &&
+          ((key !== "toDate" && key !== "inProgress") ||
+            (key === "toDate" && !this.state.inputValues.inProgress))
         ) {
           acc.push(key);
         }
@@ -85,38 +79,21 @@ export default class BackgroundFormPreview extends React.Component {
     this.initializeState();
   }
 
-  render() {
-    const { entry, wrapper, inputOneName, inputTwoName, deleteEntry } =
-      this.props;
+  deleteEntry(event) {
+    this.props.deleteEntry(event);
+  }
 
-    const fromDate = Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...getSplitDate(entry.fromDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.fromDate;
-
-    const toDate = entry.inProgress
-      ? "Present"
-      : Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...getSplitDate(entry.toDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.toDate;
+  render(renderInfo) {
+    const { entry, formInputsComponent, cardInfo } = renderInfo;
 
     const editingForm = (
       <section className="form edit-entry-form">
-        <BackgroundFormInputs
-          {...{
-            ...this.props,
-            handleChange: this.handleChange,
-            inputValues: this.state.inputValues,
-            invalidInputs: this.state.invalidInputs,
-          }}
-        />
+        {formInputsComponent({
+          ...this.props,
+          handleChange: this.handleChange,
+          inputValues: this.state.inputValues,
+          invalidInputs: this.state.invalidInputs,
+        })}
 
         <button
           type="button"
@@ -129,7 +106,7 @@ export default class BackgroundFormPreview extends React.Component {
         <button
           type="button"
           title="Apply"
-          data-wrapper={wrapper}
+          data-wrapper={this.props.wrapper}
           data-id={entry.id}
           data-entry={JSON.stringify({
             ...this.state.inputValues,
@@ -144,45 +121,39 @@ export default class BackgroundFormPreview extends React.Component {
     );
 
     return (
-      <section className={`preview ${wrapper}-preview`} data-id={entry.id}>
-        <button
-          className="edit-entry-button"
-          type="button"
-          title="Edit"
-          data-wrapper={wrapper}
-          data-id={entry.id}
-          onClick={this.openForm}
-        >
-          <FaEdit style={{ pointerEvents: "none" }} />
-        </button>
+      <section
+        className={`preview ${this.props.wrapper}-preview`}
+        data-id={entry.id}
+      >
+        <header className="card-buttons-wrapper">
+          <button
+            className="edit-entry-button"
+            type="button"
+            title="Edit"
+            data-wrapper={this.props.wrapper}
+            data-id={entry.id}
+            onClick={this.openForm}
+          >
+            <FaEdit style={{ pointerEvents: "none" }} />
+          </button>
+          <button
+            className="delete-entry-button"
+            type="button"
+            title="Delete"
+            data-wrapper={this.props.wrapper}
+            data-id={entry.id}
+            onClick={this.deleteEntry}
+          >
+            <FaTimes style={{ pointerEvents: "none" }} />
+          </button>
+        </header>
 
-        <button
-          className="delete-entry-button"
-          type="button"
-          title="Delete"
-          data-wrapper={wrapper}
-          data-id={entry.id}
-          onClick={deleteEntry}
-        >
-          <FaTimes style={{ pointerEvents: "none" }} />
-        </button>
-
-        <p className={`${wrapper}-preview-info ${inputOneName}`}>
-          {entry[inputOneName]}
-        </p>
-
-        <p className={`${wrapper}-preview-info ${inputTwoName}`}>
-          {entry[inputTwoName]}
-        </p>
-
-        <p className={`${wrapper}-preview-info date`}>
-          <span className="from">{fromDate}</span>
-          <span className="separator">-</span>
-          <span className="to">{toDate}</span>
-        </p>
+        {cardInfo}
 
         {this.state.formIsActive && editingForm}
       </section>
     );
   }
 }
+
+export default BaseCardPreview;
