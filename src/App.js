@@ -123,25 +123,20 @@ export default class App extends React.Component {
     const wrapper = event.target.getAttribute("data-wrapper");
     const entry = JSON.parse(event.target.getAttribute("data-entry"));
 
-    this.setState(
-      (prevState) => {
-        const entries = prevState.personalInfo[wrapper];
-        const newEntry = {
-          ...entry,
-          id: entries.length ? entries[entries.length - 1].id + 1 : 0,
-        };
+    this.setState((prevState) => {
+      const entries = prevState.personalInfo[wrapper];
+      const newEntry = {
+        ...entry,
+        id: entries.length ? entries[entries.length - 1].id + 1 : 0,
+      };
 
-        return {
-          personalInfo: {
-            ...prevState.personalInfo,
-            [wrapper]: [...prevState.personalInfo[wrapper], newEntry],
-          },
-        };
-      },
-      () => {
-        console.log(this.state.personalInfo);
-      }
-    );
+      return {
+        personalInfo: {
+          ...prevState.personalInfo,
+          [wrapper]: [...prevState.personalInfo[wrapper], newEntry],
+        },
+      };
+    });
   }
 
   editEntry(event) {
@@ -165,9 +160,6 @@ export default class App extends React.Component {
   deleteEntry(event) {
     const wrapper = event.target.getAttribute("data-wrapper");
     const deletionId = event.target.getAttribute("data-id");
-
-    console.log(wrapper);
-    console.log(deletionId);
 
     this.setState((prevState) => ({
       personalInfo: {

@@ -16,8 +16,16 @@ const example = {
   },
   phone: "(206) 555-1234",
   email: "john-doe@example.com",
-  website: { domain: "john-doe.dev", url: "", redirect: false },
-  linkedin: { userName: "John Doe", url: "", redirect: false },
+  website: {
+    domain: "john-doe.dev",
+    url: "https://john-doe.dev/",
+    redirect: true,
+  },
+  linkedin: {
+    userName: "John Doe",
+    url: "https://www.linkedin.com/in/john-doe-made-up-user/",
+    redirect: true,
+  },
   github: { userName: "", url: "", redirect: false },
   gitlab: { userName: "", url: "", redirect: false },
   instagram: { userName: "", url: "", redirect: false },

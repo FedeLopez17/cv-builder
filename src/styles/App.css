@@ -8,3 +8,8 @@
   box-sizing: border-box;
   padding: 0 30px;
 }
+
+.main-header button {
+  min-width: 100px;
+  height: 30px;
+}

@@ -4,11 +4,13 @@
   justify-content: center;
   align-items: center;
   background-color: darkcyan;
+  min-height: 100vh;
 }
 
-#preview-container .preview {
+#preview-container #cv-preview {
+  width: min(1000px, 100%);
+  margin: 70px 0;
   aspect-ratio: 1/1.41;
-  height: 90%;
 }
 
 #preview-container .description {

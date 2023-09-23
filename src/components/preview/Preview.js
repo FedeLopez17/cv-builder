@@ -4,6 +4,10 @@ import LayoutOne from "./LayoutOne";
 
 export default class Preview extends React.Component {
   render() {
+    const downloadPDF = () => {
+      const preview = document.getElementById("cv-preview");
+    };
+
     return (
       <section id="preview-container">
         <header className="preview-buttons-wrapper main-header">
@@ -15,11 +19,11 @@ export default class Preview extends React.Component {
           >
             Edit
           </button>
-          <button type="button" id="download-pdf-button">
+          <button type="button" id="download-pdf-button" onClick={downloadPDF}>
             Download
           </button>
         </header>
-        <section className="preview">
+        <section id="cv-preview">
           <LayoutOne {...this.props}></LayoutOne>
         </section>
       </section>
