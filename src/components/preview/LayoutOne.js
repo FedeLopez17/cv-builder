@@ -19,7 +19,7 @@ import {
   FaVimeo,
   FaYoutube,
 } from "react-icons/fa";
-import "../../styles/LayoutOne.css";
+import "../../styles/preview/LayoutOne.css";
 
 export default class LayoutOne extends React.Component {
   render() {
@@ -30,14 +30,14 @@ export default class LayoutOne extends React.Component {
 
       return arr.map((ele) => (
         <section className={isExp ? "experience" : "education"} key={ele.id}>
-          <p className={isExp ? "role" : "degree"}>
+          <p className={`bold ${isExp ? "role" : "degree"}`}>
             {ele[isExp ? "role" : "degree"]}
           </p>
           <p className={(isExp && "company") || "institution"}>
             {ele[isExp ? "companyName" : "institutionName"]}
           </p>
           <p className="time-span">
-            {ele.fromDate} - {ele.toDate}
+            {ele.fromDate} - {ele.inProgress ? "Current" : ele.toDate}
           </p>
           {ele.description && <p className="description">{ele.description}</p>}
         </section>
@@ -131,7 +131,7 @@ export default class LayoutOne extends React.Component {
           </section>
 
           {!!personalInfo.languages.length && (
-            <section>
+            <section id="languages">
               <h3>Languages:</h3>
               {personalInfo.languages.map((langObj) => (
                 <p key={langObj.id}>
@@ -142,7 +142,7 @@ export default class LayoutOne extends React.Component {
           )}
 
           {!!personalInfo.technicalSkills.length && (
-            <section>
+            <section id="technical-skills">
               <h3>Technical Skills:</h3>
               {personalInfo.technicalSkills.map((skillObj) => (
                 <p key={skillObj.id}>{skillObj.skill}</p>
@@ -151,7 +151,7 @@ export default class LayoutOne extends React.Component {
           )}
 
           {!!personalInfo.softSkills.length && (
-            <section>
+            <section id="soft-skills">
               <h3>Soft Skills:</h3>
               {personalInfo.softSkills.map((skillObj) => (
                 <p key={skillObj.id}>{skillObj.skill}</p>
@@ -160,7 +160,7 @@ export default class LayoutOne extends React.Component {
           )}
 
           {!!personalInfo.hobbies.length && (
-            <section>
+            <section id="hobbies">
               <h3>Hobbies:</h3>
               {personalInfo.hobbies.map((hobbyObj, index) => (
                 <p key={index}>{hobbyObj.hobby}</p>
@@ -196,21 +196,27 @@ export default class LayoutOne extends React.Component {
               </h3>
               {personalInfo.projects.map((projectObj) => (
                 <section className="project" key={projectObj.id}>
-                  <p className="project-full-name">{projectObj.name}</p>
+                  <p className="project-name bold">{projectObj.name}</p>
+                  <p className="time-span">
+                    {projectObj.fromDate} - {projectObj.toDate}
+                  </p>
                   <p className="project-description">
                     {projectObj.description}
                   </p>
                   {!!projectObj.website && (
-                    <p className="website">Website: {projectObj.website}</p>
+                    <p className="website">
+                      <span className="bold">Website:</span>{" "}
+                      <a href={projectObj.website}>{projectObj.website}</a>
+                    </p>
                   )}
                   {!!projectObj.repository && (
                     <p className="repository">
-                      Repository: {projectObj.repository}
+                      <span className="bold">Repository:</span>{" "}
+                      <a href={projectObj.repository}>
+                        {projectObj.repository}
+                      </a>
                     </p>
                   )}
-                  <p className="time-span">
-                    {projectObj.fromDate} - {projectObj.toDate}
-                  </p>
                 </section>
               ))}
             </section>

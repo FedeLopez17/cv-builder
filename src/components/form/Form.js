@@ -5,7 +5,7 @@ import formData from "../../data/formData";
 import LocationSelector from "./location-selector/LocationSelector";
 import PhotoInput from "./PhotoInput";
 import CardForm from "./card-form/CardForm";
-import "../../styles/Form.css";
+import "../../styles/form/Form.css";
 
 export default class Form extends React.Component {
   render() {

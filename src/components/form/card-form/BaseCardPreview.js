@@ -9,6 +9,7 @@ class BaseCardPreview extends React.Component {
       inputValues: {},
     };
 
+    this.dialogRef = React.createRef();
     this.openForm = this.openForm.bind(this);
     this.initializeState = this.initializeState.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -17,11 +18,18 @@ class BaseCardPreview extends React.Component {
   }
 
   initializeState() {
-    this.setState({
-      formIsActive: false,
-      inputValues: this.props.entry,
-      invalidInputs: [],
-    });
+    this.setState(
+      {
+        formIsActive: false,
+        inputValues: this.props.entry,
+        invalidInputs: [],
+      },
+      () => {
+        if (this.dialogRef.current) {
+          this.dialogRef.current.close();
+        }
+      }
+    );
   }
 
   componentDidMount() {
@@ -30,7 +38,11 @@ class BaseCardPreview extends React.Component {
 
   openForm() {
     if (!this.state.formIsActive) {
-      this.setState({ formIsActive: true });
+      this.setState({ formIsActive: true }, () => {
+        if (this.dialogRef.current) {
+          this.dialogRef.current.showModal();
+        }
+      });
     }
   }
 
@@ -84,40 +96,41 @@ class BaseCardPreview extends React.Component {
   }
 
   render(renderInfo) {
+    // I think receiving the renderInfo argument this way is wrong and that it should be passed as props instead.
     const { entry, formInputsComponent, cardInfo } = renderInfo;
 
     const editingForm = (
-      <section className="form edit-entry-form">
+      <dialog className="form edit-entry-form" ref={this.dialogRef}>
         {formInputsComponent({
           ...this.props,
           handleChange: this.handleChange,
           inputValues: this.state.inputValues,
           invalidInputs: this.state.invalidInputs,
         })}
-
-        <button
-          type="button"
-          className="cancel-editing-button"
-          onClick={this.initializeState}
-        >
-          Cancel
-        </button>
-
-        <button
-          type="button"
-          title="Apply"
-          data-wrapper={this.props.wrapper}
-          data-id={entry.id}
-          data-entry={JSON.stringify({
-            ...this.state.inputValues,
-            id: entry.id,
-          })}
-          className="apply-editing-button"
-          onClick={this.validateAndEditEntry}
-        >
-          Apply
-        </button>
-      </section>
+        <section class="edit-form-buttons-wrapper">
+          <button
+            type="button"
+            className="cancel-editing-button"
+            onClick={this.initializeState}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            title="Apply"
+            data-wrapper={this.props.wrapper}
+            data-id={entry.id}
+            data-entry={JSON.stringify({
+              ...this.state.inputValues,
+              id: entry.id,
+            })}
+            className="apply-editing-button"
+            onClick={this.validateAndEditEntry}
+          >
+            Apply
+          </button>
+        </section>
+      </dialog>
     );
 
     return (

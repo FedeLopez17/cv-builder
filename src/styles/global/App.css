@@ -13,3 +13,20 @@
   min-width: 100px;
   height: 30px;
 }
+
+dialog {
+  width: min(500px, 100%);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+dialog::backdrop {
+  background-color: #00000050;
+}
+
+@media (max-width: 400px) or (orientation: portrait) {
+  :root {
+    font-size: 10px;
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/Preview.css";
+import "../../styles/preview/Preview.css";
 import LayoutOne from "./LayoutOne";
 import html2pdf from "html2pdf.js";
 
@@ -15,10 +15,15 @@ export default class Preview extends React.Component {
           .trim()}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 3 },
-        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+        jsPDF: {
+          unit: "mm",
+          format: [297, 210],
+          orientation: "portrait",
+          precision: 16,
+        },
       };
 
-      const preview = document.getElementById("cv-preview");
+      const preview = document.querySelector(".cv-layout");
 
       html2pdf()
         .set(options)
@@ -43,7 +48,9 @@ export default class Preview extends React.Component {
           </button>
         </header>
         <section id="cv-preview">
-          <LayoutOne {...this.props}></LayoutOne>
+          <div id="page-jump-references">
+            <LayoutOne {...this.props}></LayoutOne>
+          </div>
         </section>
       </section>
     );

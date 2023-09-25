@@ -27,13 +27,13 @@ label[for="user-photo"] {
 }
 
 #photo-selector > #camera-icon {
-  font-size: 40px;
+  font-size: 2rem;
 }
 
 #photo-selector > h3 {
   margin-block: 0;
   margin-inline: 0;
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
 #photo-selector > img {

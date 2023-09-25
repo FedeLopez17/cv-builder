@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/PhotoInput.css";
 import { FaCamera, FaTrashAlt } from "react-icons/fa";
 import InvalidInputMessage from "./InvalidInputMessage";
+import "../../styles/form/PhotoInput.css";
 
 export default class PhotoInput extends React.Component {
   constructor(props) {

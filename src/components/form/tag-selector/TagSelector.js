@@ -3,7 +3,7 @@ import Helpers from "../../../Helpers";
 import TagSelectorInput from "./TagSelectorInput";
 import Tag from "./Tag";
 import { FaPlusCircle } from "react-icons/fa";
-import "../../../styles/TagSelector.css";
+import "../../../styles/form/TagSelector.css";
 
 export default class TagSelector extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from "react";
 import formData from "../../data/formData";
-import "..//../styles/OnlinePresenceInputs.css";
+import "../../styles/form/OnlinePresenceInputs.css";
 
 export default class OnlinePresenceInputs extends React.Component {
   render() {

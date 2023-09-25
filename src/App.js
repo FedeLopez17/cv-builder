@@ -2,7 +2,7 @@ import React from "react";
 import Form from "./components/form/Form";
 import Preview from "./components/preview/Preview";
 import example from "./data/formExample";
-import "./styles/App.css";
+import "./styles/global/App.css";
 
 export default class App extends React.Component {
   constructor() {

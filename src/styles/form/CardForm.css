@@ -39,7 +39,8 @@
   margin-bottom: 0px;
 }
 
-.card-form .add-entry-form {
+.card-form .add-entry-form,
+.card-form .edit-entry-form {
   background-color: cadetblue;
   display: flex;
   flex-direction: column;
@@ -48,21 +49,25 @@
   gap: 10px;
 }
 
-.card-form .add-entry-form > * {
+.card-form .add-entry-form > *,
+.card-form .edit-entry-form > * {
   display: flex;
   flex-direction: column;
 }
 
-.card-form .add-entry-form > *.checkbox {
+.card-form .add-entry-form > *.checkbox,
+.card-form .edit-entry-form > *.checkbox {
   flex-direction: row;
   align-items: center;
 }
 
-.card-form .add-entry-form > *.checkbox input {
+.card-form .add-entry-form > *.checkbox input,
+.card-form .edit-entry-form > *.checkbox input {
   width: 15px;
 }
 
-.card-form .add-entry-form textarea {
+.card-form .add-entry-form textarea,
+.card-form .edit-entry-form textarea {
   resize: vertical;
   height: 100px;
 }
@@ -71,7 +76,8 @@
   width: fit-content;
 }
 
-.card-form .card-form-buttons-wrapper {
+.card-form .card-form-buttons-wrapper,
+.card-form .edit-form-buttons-wrapper {
   flex-direction: row;
   align-self: flex-end;
   gap: 5px;

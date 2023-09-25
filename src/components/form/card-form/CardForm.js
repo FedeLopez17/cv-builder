@@ -7,7 +7,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import ReferencePreview from "./ReferencePreview";
 import ReferenceFormInputs from "./ReferenceFormInputs";
 import Helpers from "../../../Helpers";
-import "../../../styles/CardForm.css";
+import "../../../styles/form/CardForm.css";
 
 const ALLOWED_WRAPPERS = ["education", "experience", "projects", "references"];
 
