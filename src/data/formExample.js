@@ -6,9 +6,9 @@ const example = {
   lastName: "Doe",
   role: "Back-End Developer",
   description:
-    "Seasoned Senior Back-End Engineer specializing in architecting and optimizing high-performance systems.\nWith a wealth of experience accrued through years of dedicated work, I am committed to delivering robust and scalable solutions.\nMy focus on designing efficient back-end infrastructure, coupled with a deep understanding of programming languages, ensures the seamless operation of web applications. I thrive in crafting solutions that stand the test of time and excel at problem-solving in complex technical environments.",
+    "Senior Back-End Engineer with expertise in architecting high-performance systems, optimizing infrastructure, and crafting scalable solutions. Deep knowledge of programming languages and a commitment to robust and efficient designs.",
   location: {
-    country: "United States",
+    country: "USA",
     region: "Washington",
     city: "Seattle",
     postalCode: "",
@@ -90,7 +90,7 @@ const example = {
       company: "DoorDash",
       role: "Junior Back-End Developer",
       description:
-        "Assisted in the development and maintenance of backend systems and APIs under the guidance of senior team members.\nParticipated in coding tasks, bug fixes, and testing, gaining hands-on experience with various programming languages and database technologies.\nCollaborated closely with the team to troubleshoot and optimize code, learned from peer code reviews, and stayed informed about industry trends and best practices.\nDemonstrated a strong commitment to learning and enhancing coding skills.",
+        "Contributed to backend system and API development, working alongside senior team members. Gained hands-on experience in coding, debugging, and testing with diverse programming languages and databases, and collaborated effectively to troubleshoot and optimize code, learned from peer reviews, and stayed on top of industry trends.",
       fromDate: "2021-04",
       toDate: "2022-02",
       inProgress: false,
@@ -100,7 +100,7 @@ const example = {
       company: "Amazon",
       role: "Back-End Developer",
       description:
-        "Played a pivotal role in designing, implementing, and optimizing backend systems and APIs.\nLed the development of critical components, managed database operations, and ensured the scalability and robustness of systems.\nCollaborated with cross-functional teams to define project requirements and timelines, conducted code reviews, and mentored junior developers to foster their growth.",
+        "Key contributor in designing, implementing, and optimizing backend systems and APIs. Led critical component development, managed databases, and ensured system scalability. Collaborated cross-functionally, conducted code reviews, and mentored junior developers for growth.",
       fromDate: "2022-03",
       toDate: "",
       inProgress: true,
@@ -122,7 +122,7 @@ const example = {
       id: 0,
       name: "TaskTracker",
       description:
-        "Web-based task management application that allows users to create, organize, and track tasks efficiently.\nThe application features user authentication, a user-friendly interface, and task categorization. Users can register and log in to create, update, and delete tasks, while also marking them as completed.\nTaskTracker helps users stay organized and boosts productivity.",
+        "Web-based task management application that allows users to create, organize, and track tasks efficiently.",
       website: "tasktracker.madeup.com",
       repository: "github.com/made-up/tasktracker",
       fromDate: "2021-07",
