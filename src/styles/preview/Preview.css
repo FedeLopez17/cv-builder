@@ -38,8 +38,8 @@
   background-image: repeating-linear-gradient(
     to bottom,
     transparent,
-    transparent calc(297mm - 2px),
-    red 297mm
+    transparent calc(297mm - 1px),
+    red calc(297mm + 1px)
   );
 }
 

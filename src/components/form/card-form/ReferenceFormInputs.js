@@ -30,6 +30,9 @@ export default class ReferenceFormInputs extends React.Component {
           <input
             type="text"
             id="reference-last-name-input"
+            {...(invalidInputs.includes("lastName") && {
+              className: "invalid",
+            })}
             placeholder="PLACEHOLDER"
             name="lastName"
             value={inputValues.lastName}
@@ -43,6 +46,9 @@ export default class ReferenceFormInputs extends React.Component {
           <input
             type="text"
             id="reference-role-input"
+            {...(invalidInputs.includes("role") && {
+              className: "invalid",
+            })}
             placeholder="PLACEHOLDER"
             autoComplete="off"
             name="role"
@@ -62,6 +68,9 @@ export default class ReferenceFormInputs extends React.Component {
           <input
             type="text"
             id="reference-company-input"
+            {...(invalidInputs.includes("company") && {
+              className: "invalid",
+            })}
             placeholder="PLACEHOLDER"
             autoComplete="off"
             name="company"
@@ -89,6 +98,9 @@ export default class ReferenceFormInputs extends React.Component {
           <input
             type="email"
             id="reference-email-input"
+            {...(invalidInputs.includes("email") && {
+              className: "invalid",
+            })}
             placeholder="PLACEHOLDER"
             autoComplete="on"
             name="email"

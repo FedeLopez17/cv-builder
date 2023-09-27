@@ -49,8 +49,8 @@
   gap: 10px;
 }
 
-.card-form .add-entry-form > *,
-.card-form .edit-entry-form > * {
+.card-form .add-entry-form > .input-wrapper,
+.card-form .edit-entry-form > .input-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -76,8 +76,7 @@
   width: fit-content;
 }
 
-.card-form .card-form-buttons-wrapper,
-.card-form .edit-form-buttons-wrapper {
+.card-form .card-form-buttons-wrapper {
   flex-direction: row;
   align-self: flex-end;
   gap: 5px;

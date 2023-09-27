@@ -45,10 +45,10 @@ input#user-photo {
 }
 
 #remove-photo-button {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   position: absolute;
-  top: calc(50% - 15px);
+  top: calc(50% - 11px);
   left: 255px;
 }

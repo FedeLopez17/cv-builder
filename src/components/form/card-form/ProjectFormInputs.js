@@ -1,5 +1,6 @@
 import React from "react";
 import InvalidInputMessage from "../InvalidInputMessage";
+import RequiredFieldIndicator from "../RequiredFieldIndicator";
 
 export default class ProjectFormInputs extends React.Component {
   render() {
@@ -17,7 +18,9 @@ export default class ProjectFormInputs extends React.Component {
     return (
       <>
         <section className="input-wrapper">
-          <label htmlFor="project-name-input">Name:</label>
+          <label htmlFor="project-name-input">
+            Name: <RequiredFieldIndicator />
+          </label>
           <input
             type="text"
             id="project-name-input"
@@ -71,7 +74,9 @@ export default class ProjectFormInputs extends React.Component {
         </section>
 
         <section className="input-wrapper">
-          <label htmlFor="project-from-date-input">From:</label>
+          <label htmlFor="project-from-date-input">
+            From: <RequiredFieldIndicator />
+          </label>
           <input
             type="month"
             min={minDate}
@@ -88,7 +93,9 @@ export default class ProjectFormInputs extends React.Component {
         </section>
 
         <section className="input-wrapper">
-          <label htmlFor="project-to-date-input">To:</label>
+          <label htmlFor="project-to-date-input">
+            To: <RequiredFieldIndicator />
+          </label>
           <input
             type="month"
             min={minDate}

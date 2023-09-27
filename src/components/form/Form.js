@@ -8,6 +8,28 @@ import CardForm from "./card-form/CardForm";
 import "../../styles/form/Form.css";
 
 export default class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { dialogOpen: false, doNotAskForConfirmation: false };
+    this.dialogRef = React.createRef();
+    this.openDialog = this.openDialog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+  }
+
+  openDialog() {
+    this.setState(
+      { dialogOpen: true },
+      () => this.dialogRef.current && this.dialogRef.current.showModal()
+    );
+  }
+
+  closeDialog() {
+    this.setState(
+      { dialogOpen: false },
+      () => this.dialogRef.current && this.dialogRef.current.close()
+    );
+  }
+
   render() {
     const {
       personalInfo,
@@ -22,8 +44,49 @@ export default class Form extends React.Component {
       toggleMode,
     } = this.props;
 
+    const confirmationDialog = (
+      <dialog ref={this.dialogRef}>
+        <p>Are you sure you want to clear all fields?</p>
+        <section className="input-wrapper checkbox">
+          <label htmlFor="do-not-ask-again-checkbox">
+            Don't show this message again
+          </label>
+          <input
+            type="checkbox"
+            id="do-not-ask-again-checkbox"
+            checked={this.state.doNotAskForConfirmation}
+            onChange={(event) =>
+              this.setState({ doNotAskForConfirmation: event.target.checked })
+            }
+          />
+        </section>
+
+        <section className="dialog-buttons-wrapper">
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={this.closeDialog}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="confirm-button"
+            onClick={() => {
+              resetForm();
+              this.closeDialog();
+            }}
+          >
+            Yes, clear all fields
+          </button>
+        </section>
+      </dialog>
+    );
+
     return (
       <section className="form-section">
+        {this.state.dialogOpen && confirmationDialog}
+
         <header className="main-header">
           <section className="form-related-buttons-wrapper">
             <button
@@ -33,7 +96,13 @@ export default class Form extends React.Component {
             >
               Load Example
             </button>
-            <button type="button" id="reset-form-button" onClick={resetForm}>
+            <button
+              type="button"
+              id="reset-form-button"
+              onClick={
+                this.state.doNotAskForConfirmation ? resetForm : this.openDialog
+              }
+            >
               Clear
             </button>
           </section>

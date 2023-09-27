@@ -2,6 +2,7 @@ import React from "react";
 import formData from "../../../data/formData";
 import Helpers from "../../../Helpers";
 import InvalidInputMessage from "../InvalidInputMessage";
+import RequiredFieldIndicator from "../RequiredFieldIndicator";
 
 export default class BackgroundFormInputs extends React.Component {
   render() {
@@ -37,6 +38,7 @@ export default class BackgroundFormInputs extends React.Component {
         <section className="input-wrapper">
           <label htmlFor={`${inputOneName}-input`}>
             {Helpers.capitalize(inputOneName)}:
+            <RequiredFieldIndicator />
           </label>
           <input
             type="text"
@@ -62,6 +64,7 @@ export default class BackgroundFormInputs extends React.Component {
         <section className="input-wrapper">
           <label htmlFor={`${inputTwoName}-input`}>
             {Helpers.capitalize(inputTwoName)}:
+            <RequiredFieldIndicator />
           </label>
           <input
             type="text"
@@ -91,7 +94,9 @@ export default class BackgroundFormInputs extends React.Component {
         </section>
 
         <section className="input-wrapper">
-          <label htmlFor={`${wrapper}-from-date-input`}>From:</label>
+          <label htmlFor={`${wrapper}-from-date-input`}>
+            From: <RequiredFieldIndicator />
+          </label>
           <input
             type="month"
             min={minDate}
@@ -107,22 +112,10 @@ export default class BackgroundFormInputs extends React.Component {
           {invalidInputs.includes("fromDate") && <InvalidInputMessage />}
         </section>
 
-        <section className="input-wrapper checkbox">
-          <label htmlFor={`${wrapper}-in-progress-input`}>
-            Still {isEducation ? "studying" : "working"}:
-          </label>
-          <input
-            type="checkbox"
-            checked={inputValues.inProgress}
-            id={`${wrapper}-in-progress-input`}
-            name="inProgress"
-            value={inputValues.inProgress}
-            onChange={handleChange}
-          />
-        </section>
-
         <section className="input-wrapper">
-          <label htmlFor={`${wrapper}-to-date-input`}>To:</label>
+          <label htmlFor={`${wrapper}-to-date-input`}>
+            To: <RequiredFieldIndicator />
+          </label>
           <input
             type="month"
             min={minDate}
@@ -135,6 +128,20 @@ export default class BackgroundFormInputs extends React.Component {
             onChange={handleChange}
           ></input>
           {invalidInputs.includes("toDate") && <InvalidInputMessage />}
+        </section>
+
+        <section className="input-wrapper checkbox">
+          <label htmlFor={`${wrapper}-in-progress-input`}>
+            Still {isEducation ? "studying" : "working"}:
+          </label>
+          <input
+            type="checkbox"
+            checked={inputValues.inProgress}
+            id={`${wrapper}-in-progress-input`}
+            name="inProgress"
+            value={inputValues.inProgress}
+            onChange={handleChange}
+          />
         </section>
       </>
     );

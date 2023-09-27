@@ -1,9 +1,11 @@
 import React from "react";
 import InvalidInputMessage from "../InvalidInputMessage";
+import RequiredFieldIndicator from "../RequiredFieldIndicator";
 
 export default class TagSelectorInput extends React.Component {
   render() {
     const { inputData, handleChange } = this.props;
+
     const {
       labelText,
       input: { attributes, data },
@@ -11,7 +13,12 @@ export default class TagSelectorInput extends React.Component {
 
     return (
       <section className="input-wrapper">
-        {labelText && <label htmlFor={attributes.id}>{labelText}</label>}
+        {labelText && (
+          <label htmlFor={attributes.id}>
+            {labelText}
+            {inputData.input.data.required && <RequiredFieldIndicator />}
+          </label>
+        )}
         <input
           {...attributes}
           {...(data.isInvalid && { className: "invalid" })}

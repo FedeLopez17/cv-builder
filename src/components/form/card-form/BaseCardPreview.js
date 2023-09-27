@@ -107,7 +107,7 @@ class BaseCardPreview extends React.Component {
           inputValues: this.state.inputValues,
           invalidInputs: this.state.invalidInputs,
         })}
-        <section class="edit-form-buttons-wrapper">
+        <section class="dialog-buttons-wrapper">
           <button
             type="button"
             className="cancel-editing-button"

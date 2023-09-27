@@ -19,10 +19,30 @@ dialog {
   display: flex;
   flex-direction: column;
   margin: auto;
+  box-sizing: border-box;
+  padding: 20px;
+  gap: 10px;
 }
 
 dialog::backdrop {
   background-color: #00000050;
+}
+
+dialog > .input-wrapper.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+dialog > .input-wrapper.checkbox input {
+  width: 15px;
+}
+
+dialog > section.dialog-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  gap: 5px;
 }
 
 @media (max-width: 400px) or (orientation: portrait) {
