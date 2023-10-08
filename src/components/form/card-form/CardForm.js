@@ -190,7 +190,7 @@ export default class CardForm extends React.Component {
         return (
           <ProjectPreview
             {...{
-              childrenPropsInCommon,
+              ...childrenPropsInCommon,
               entry,
               editEntry,
               deleteEntry,
@@ -204,7 +204,7 @@ export default class CardForm extends React.Component {
         return (
           <ReferencePreview
             {...{
-              childrenPropsInCommon,
+              ...childrenPropsInCommon,
               entry,
               editEntry,
               deleteEntry,

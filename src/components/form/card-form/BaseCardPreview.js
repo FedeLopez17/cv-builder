@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEdit, FaTimes } from "react-icons/fa";
+import Helpers from "../../../Helpers";
 
 class BaseCardPreview extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class BaseCardPreview extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.validateAndEditEntry = this.validateAndEditEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.getFromDate = this.getFromDate.bind(this);
+    this.getToDate = this.getToDate.bind(this);
   }
 
   initializeState() {
@@ -95,9 +98,28 @@ class BaseCardPreview extends React.Component {
     this.props.deleteEntry(event);
   }
 
-  render(renderInfo) {
-    // I think receiving the renderInfo argument this way is wrong and that it should be passed as props instead.
-    const { entry, formInputsComponent, cardInfo } = renderInfo;
+  getFromDate(entryFromDate) {
+    return Helpers.monthInputSupported()
+      ? Helpers.formatMonthInputDate({
+          ...Helpers.getSplitDate(entryFromDate),
+          monthFirst: true,
+          twoDigitsYear: true,
+        })
+      : entryFromDate;
+  }
+
+  getToDate(entryToDate) {
+    return Helpers.monthInputSupported()
+      ? Helpers.formatMonthInputDate({
+          ...Helpers.getSplitDate(entryToDate),
+          monthFirst: true,
+          twoDigitsYear: true,
+        })
+      : entryToDate;
+  }
+
+  render() {
+    const { entry, formInputsComponent, cardInfo } = this;
 
     const editingForm = (
       <dialog className="form edit-entry-form" ref={this.dialogRef}>
@@ -107,7 +129,7 @@ class BaseCardPreview extends React.Component {
           inputValues: this.state.inputValues,
           invalidInputs: this.state.invalidInputs,
         })}
-        <section class="dialog-buttons-wrapper">
+        <section className="dialog-buttons-wrapper">
           <button
             type="button"
             className="cancel-editing-button"

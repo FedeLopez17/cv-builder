@@ -1,50 +1,38 @@
 import React from "react";
-import Helpers from "../../../Helpers";
 import BasePreview from "./BaseCardPreview";
 import BackgroundFormInputs from "./BackgroundFormInputs";
 
 export default class BackgroundPreview extends BasePreview {
+  constructor(props) {
+    super(props);
+    this.getFromDate = this.getFromDate.bind(this);
+    this.getToDate = this.getToDate.bind(this);
+    this.entry = props.entry;
+    this.formInputsComponent = (props) => <BackgroundFormInputs {...props} />;
+    this.cardInfo = (
+      <>
+        <p className={`${props.wrapper}-preview-info ${props.inputOneName}`}>
+          {this.entry[props.inputOneName]}
+        </p>
+
+        <p className={`${props.wrapper}-preview-info ${props.inputTwoName}`}>
+          {this.entry[props.inputTwoName]}
+        </p>
+
+        <p className={`${props.wrapper}-preview-info date`}>
+          <span className="from">{this.getFromDate(this.entry.fromDate)}</span>
+          <span className="separator">-</span>
+          <span className="to">
+            {this.entry.inProgress
+              ? "Present"
+              : this.getToDate(this.entry.toDate)}
+          </span>
+        </p>
+      </>
+    );
+  }
+
   render() {
-    const { entry, inputOneName, inputTwoName } = this.props;
-
-    const fromDate = Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...Helpers.getSplitDate(entry.fromDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.fromDate;
-
-    const toDate = entry.inProgress
-      ? "Present"
-      : Helpers.monthInputSupported()
-      ? Helpers.formatMonthInputDate({
-          ...Helpers.getSplitDate(entry.toDate),
-          monthFirst: true,
-          twoDigitsYear: true,
-        })
-      : entry.toDate;
-
-    return super.render({
-      entry,
-      formInputsComponent: (props) => <BackgroundFormInputs {...props} />,
-      cardInfo: (
-        <>
-          <p className={`${this.props.wrapper}-preview-info ${inputOneName}`}>
-            {entry[inputOneName]}
-          </p>
-
-          <p className={`${this.props.wrapper}-preview-info ${inputTwoName}`}>
-            {entry[inputTwoName]}
-          </p>
-
-          <p className={`${this.props.wrapper}-preview-info date`}>
-            <span className="from">{fromDate}</span>
-            <span className="separator">-</span>
-            <span className="to">{toDate}</span>
-          </p>
-        </>
-      ),
-    });
+    return super.render();
   }
 }
