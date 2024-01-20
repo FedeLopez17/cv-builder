@@ -1,0 +1,39 @@
+@media (max-width: 220mm) {
+  #preview-container .scaling-element {
+    scale: 0.8;
+  }
+}
+
+@media (max-width: 700px) {
+  #preview-container .scaling-element {
+    scale: 0.6;
+  }
+}
+
+@media (max-width: 500px) {
+  #preview-container .scaling-element {
+    scale: 0.5;
+  }
+}
+
+@media (max-width: 400px) {
+  #preview-container .scaling-element {
+    scale: 0.4;
+  }
+}
+
+@media (max-width: 330px) {
+  #preview-container .scaling-element {
+    scale: 0.3;
+  }
+}
+
+@media (max-width: 400px) or (orientation: portrait) {
+  :root {
+    font-size: 10px;
+  }
+}
+
+dialog::backdrop {
+  background-color: #00000065;
+}
